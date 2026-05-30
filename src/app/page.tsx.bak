@@ -1,0 +1,297 @@
+"use client";
+
+import React, { useState } from "react";
+import Sidebar from "@/components/sidebar";
+import DashboardHeader from "@/components/dashboard-header";
+import MetricCard from "@/components/metric-card";
+import ReferralTracker from "@/components/referral-tracker";
+import AnalyticsCharts from "@/components/analytics-charts";
+import ExcelIngestion from "@/components/excel-ingestion";
+import AiMarketingEngine from "@/components/ai-marketing-engine";
+import SettingsPanel from "@/components/settings-panel";
+
+// Lucide Icons
+import {
+  Users,
+  Stethoscope,
+  DollarSign,
+  LineChart,
+  ShoppingBag,
+  Utensils,
+  Award,
+  Zap,
+  TrendingUp,
+  FileCheck
+} from "lucide-react";
+
+export default function Home() {
+  const [activeTab, setActiveTab] = useState("overview");
+  const [viewState, setViewState] = useState<"general" | "healthcare">("healthcare");
+  
+  // Interactive sync states
+  const [syncedFileCount, setSyncedFileCount] = useState(1);
+  const [importedRowsTotal, setImportedRowsTotal] = useState(1250);
+  const [syncMetricBonus, setSyncMetricBonus] = useState(0);
+
+  const handleSyncComplete = (data: { importedRows: number; sourceFile: string }) => {
+    setSyncedFileCount(prev => prev + 1);
+    setImportedRowsTotal(prev => prev + data.importedRows);
+    setSyncMetricBonus(prev => prev + Math.floor(data.importedRows / 4));
+  };
+
+  const handleRefresh = () => {
+    alert("Clearing caches and hot-reloading dashboard analytics... Done!");
+  };
+
+  // Dynamic values based on View & Ingest status
+  const getOPDCount = () => {
+    const base = 2845;
+    return (base + syncMetricBonus).toLocaleString();
+  };
+
+  const getOrdersCount = () => {
+    const base = 1420;
+    return (base + syncMetricBonus).toLocaleString();
+  };
+
+  const getReferralRevenue = () => {
+    const base = 45210;
+    const bonus = syncMetricBonus * 35;
+    return `$${(base + bonus).toLocaleString()}`;
+  };
+
+  const getGeneralRevenue = () => {
+    const base = 18450;
+    const bonus = syncMetricBonus * 12;
+    return `$${(base + bonus).toLocaleString()}`;
+  };
+
+  return (
+    <div className="flex flex-1 min-h-screen bg-[#09090b] text-[#fafafa] relative overflow-hidden font-sans">
+      
+      {/* Decorative Blur Backgrounds */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+      
+      {/* Sidebar navigation */}
+      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      {/* Main dashboard content panel */}
+      <main className="flex-1 flex flex-col min-w-0 overflow-y-auto relative">
+        <DashboardHeader 
+          activeTab={activeTab} 
+          viewState={viewState} 
+          setViewState={setViewState} 
+          onRefresh={handleRefresh}
+        />
+
+        {/* View Router */}
+        <div className="flex-1 pb-12">
+          {activeTab === "overview" && (
+            <div className="p-6 sm:p-8 space-y-6">
+              
+              {/* Interactive Ingest Info Alert */}
+              {syncMetricBonus > 0 && (
+                <div className="glass-panel p-4 rounded-2xl border-emerald-500/30 bg-emerald-950/20 text-white flex items-center justify-between animate-in fade-in duration-300">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-emerald-500/20 border border-emerald-500/30 rounded-xl text-emerald-400">
+                      <FileCheck size={18} />
+                    </div>
+                    <div>
+                      <h4 className="font-heading text-xs font-bold text-white uppercase tracking-wider">Dashboard Synced</h4>
+                      <p className="font-sans text-xs text-zinc-300 mt-0.5">
+                        Injected {importedRowsTotal.toLocaleString()} total clinical metrics. Calculated metric offsets: +{syncMetricBonus} OPD footfalls.
+                      </p>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-emerald-400 text-zinc-950 font-mono text-[9px] font-extrabold uppercase">
+                    Cache Warm
+                  </span>
+                </div>
+              )}
+
+              {/* Metric Summary Rows */}
+              {viewState === "healthcare" ? (
+                /* Healthcare Metrics Grid */
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  <MetricCard
+                    title="Total OPD Footfall"
+                    value={getOPDCount()}
+                    subtext="Intake index this month"
+                    trend={{ value: "+12.4%", isPositive: true }}
+                    icon={Users}
+                    themeColor="emerald"
+                    sparklineData={[1850, 2100, 1980, 2400, 2845 + syncMetricBonus]}
+                  />
+                  <MetricCard
+                    title="Top Department"
+                    value="Cardiology"
+                    subtext="34% of overall volume intake"
+                    trend={{ value: "+4.1%", isPositive: true }}
+                    icon={Stethoscope}
+                    themeColor="purple"
+                    sparklineData={[30, 31, 33, 32, 34]}
+                  />
+                  <MetricCard
+                    title="Referral Revenue"
+                    value={getReferralRevenue()}
+                    subtext="Yield from external PRO pipelines"
+                    trend={{ value: "+8.2%", isPositive: true }}
+                    icon={DollarSign}
+                    themeColor="emerald"
+                    sparklineData={[35000, 38000, 37200, 41000, 45210 + (syncMetricBonus * 35)]}
+                  />
+                  <MetricCard
+                    title="Marketing Ad ROI"
+                    value="4.8x"
+                    subtext="Google Search primary engine"
+                    trend={{ value: "+15.1%", isPositive: true }}
+                    icon={LineChart}
+                    themeColor="blue"
+                    sparklineData={[4.2, 4.3, 4.1, 4.5, 4.8]}
+                  />
+                </div>
+              ) : (
+                /* General Business / F&B Metrics Grid */
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  <MetricCard
+                    title="Total F&B Orders"
+                    value={getOrdersCount()}
+                    subtext="Orders processed this month"
+                    trend={{ value: "+5.6%", isPositive: true }}
+                    icon={ShoppingBag}
+                    themeColor="blue"
+                    sparklineData={[1100, 1250, 1190, 1350, 1420 + syncMetricBonus]}
+                  />
+                  <MetricCard
+                    title="Top Menu Item"
+                    value="Truffle Burger"
+                    subtext="18% of total weekly orders"
+                    trend={{ value: "+2.3%", isPositive: true }}
+                    icon={Utensils}
+                    themeColor="purple"
+                    sparklineData={[15, 16, 16, 17, 18]}
+                  />
+                  <MetricCard
+                    title="Marketing Yield"
+                    value={getGeneralRevenue()}
+                    subtext="Direct Meta campaign returns"
+                    trend={{ value: "+3.4%", isPositive: true }}
+                    icon={DollarSign}
+                    themeColor="blue"
+                    sparklineData={[15000, 16500, 16100, 17800, 18450 + (syncMetricBonus * 12)]}
+                  />
+                  <MetricCard
+                    title="Meta Ad ROI"
+                    value="3.6x"
+                    subtext="Meta campaigns and local outreach"
+                    trend={{ value: "-2.1%", isPositive: false }}
+                    icon={LineChart}
+                    themeColor="amber"
+                    sparklineData={[3.8, 3.7, 3.8, 3.6, 3.6]}
+                  />
+                </div>
+              )}
+
+              {/* Dynamic Recharts Integration */}
+              <AnalyticsCharts viewState={viewState} />
+
+              {/* Virtual PRO Referral Tracker (Exclusive to Healthcare View) */}
+              {viewState === "healthcare" && (
+                <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
+                  <ReferralTracker />
+                </div>
+              )}
+            </div>
+          )}
+
+          {activeTab === "ingestion" && (
+            <div className="animate-in fade-in duration-300">
+              <ExcelIngestion onSyncComplete={handleSyncComplete} />
+            </div>
+          )}
+
+          {activeTab === "kpis" && (
+            <div className="p-6 sm:p-8 space-y-6 max-w-5xl mx-auto">
+              <div className="glass-panel rounded-2xl p-6 glow-emerald">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-gradient-to-tr from-emerald-500 to-teal-400 rounded-xl text-zinc-950">
+                    <Award size={20} className="stroke-[2.5]" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-white">Advanced Performance Analytics</h3>
+                    <p className="font-sans text-xs text-zinc-400 mt-0.5">
+                      Modular diagnostics dashboard showing clinical referral metrics and restaurant kitchen utilization indexes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* KPI Performance Grids */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="glass-panel rounded-2xl p-6 glow-emerald space-y-4">
+                  <h4 className="font-heading text-sm font-bold text-zinc-200">Patient Conversion Efficiency</h4>
+                  <p className="font-sans text-xs text-zinc-500">Funnel progress mapping out-patient consultations into surgical operations.</p>
+                  <div className="space-y-3">
+                    {[
+                      { stage: "Consultation booked", count: 850, rate: "100%" },
+                      { stage: "Initial clinical diagnosis", count: 620, rate: "72.9%" },
+                      { stage: "Referral scheduled", count: 320, rate: "37.6%" },
+                      { stage: "Surgical conversion", count: 95, rate: "11.1%" },
+                    ].map((step, idx) => (
+                      <div key={idx} className="flex justify-between items-center p-2.5 rounded-lg bg-zinc-900/30 border border-zinc-850">
+                        <span className="font-sans text-xs text-zinc-300">{step.stage}</span>
+                        <div className="flex items-center gap-3">
+                          <span className="font-sans text-xs font-bold text-zinc-200">{step.count} cases</span>
+                          <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-sans text-[10px] font-bold">
+                            {step.rate}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="glass-panel rounded-2xl p-6 glow-emerald space-y-4">
+                  <h4 className="font-heading text-sm font-bold text-zinc-200">Operational Yield Matrix</h4>
+                  <p className="font-sans text-xs text-zinc-500">Resource yield indicators across the main department structures.</p>
+                  <div className="space-y-3">
+                    {[
+                      { name: "Out-Patient Department (OPD)", efficiency: "94.2%", speed: "18 mins avg wait", status: "optimal" },
+                      { name: "Emergency Trauma Unit (ER)", efficiency: "88.6%", speed: "8 mins avg triage", status: "warning" },
+                      { name: "In-Patient Operations (IPD)", efficiency: "98.1%", speed: "4.2 days stay", status: "optimal" },
+                      { name: "High-Speed Pharmacy Desk", efficiency: "96.4%", speed: "3 mins avg dispatch", status: "optimal" },
+                    ].map((row, idx) => (
+                      <div key={idx} className="flex justify-between items-center p-2.5 rounded-lg bg-zinc-900/30 border border-zinc-850">
+                        <div>
+                          <span className="font-sans text-xs text-zinc-300 block">{row.name}</span>
+                          <span className="font-sans text-[9px] text-zinc-500">{row.speed}</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="font-sans text-xs font-bold text-white">Cap: {row.efficiency}</span>
+                          <span className={`w-2 h-2 rounded-full ${row.status === "optimal" ? "bg-emerald-400 animate-pulse" : "bg-amber-400 animate-pulse"}`} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "marketing" && (
+            <div className="animate-in fade-in duration-300">
+              <AiMarketingEngine />
+            </div>
+          )}
+
+          {activeTab === "settings" && (
+            <div className="animate-in fade-in duration-300">
+              <SettingsPanel />
+            </div>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+}
