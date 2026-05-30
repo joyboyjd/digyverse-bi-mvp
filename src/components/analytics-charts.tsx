@@ -91,7 +91,7 @@ export default function AnalyticsCharts({ viewState }: AnalyticsChartsProps) {
         <div className="h-[280px] w-full min-w-[200px]">
           <ResponsiveContainer width="100%" height={280}>
             <AreaChart
-              data={viewState === "healthcare" ? healthcareTimelineData : generalTimelineData}
+              data={(viewState === "healthcare" ? healthcareTimelineData : generalTimelineData) as any[]}
               margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
             >
               <defs>
