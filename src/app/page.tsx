@@ -87,7 +87,7 @@ export default function Home() {
                     <div>
                       <h4 className="font-heading text-xs font-bold text-white uppercase tracking-wider">Dashboard Synced</h4>
                       <p className="font-sans text-xs text-zinc-300 mt-0.5">
-                        Injected {importedRowsTotal.toLocaleString("en-IN")} total clinical metrics. Calculated metric offsets: +{syncMetricBonus} OPD footfalls.
+                        Injected 1,250 total clinical metrics. Calculated metric offsets: +{syncMetricBonus} OPD footfalls.
                       </p>
                     </div>
                   </div>
