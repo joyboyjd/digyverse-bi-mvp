@@ -15,6 +15,8 @@ import {
   Clock
 } from "lucide-react";
 import { useIndustryContext } from "@/context/IndustryContext";
+import { useData } from "@/context/DataContext";
+import * as XLSX from 'xlsx';
 
 interface UploadedFile {
   id: string;
@@ -23,6 +25,7 @@ interface UploadedFile {
   progress: number;
   status: "uploading" | "ready" | "parsing" | "synced" | "error";
   rowsCount?: number;
+  rawFile?: File;
 }
 
 interface ExcelIngestionProps {
@@ -31,26 +34,12 @@ interface ExcelIngestionProps {
 
 export default function ExcelIngestion({ onSyncComplete }: ExcelIngestionProps) {
   const { viewState } = useIndustryContext();
+  const data = useData() as any;
+  const files: UploadedFile[] = data.activeFiles;
+  const setFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>> = data.setActiveFiles;
+  const updateMetrics = data.updateMetrics;
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
-  const [files, setFiles] = useState<UploadedFile[]>([
-    {
-      id: "demo-1",
-      name: "Q2_Healthcare_Referrals_Active.xlsx",
-      size: "2.4 MB",
-      progress: 100,
-      status: "ready",
-      rowsCount: 482,
-    },
-    {
-      id: "demo-2",
-      name: "OPD_Footfall_Index_May.csv",
-      size: "820 KB",
-      progress: 100,
-      status: "synced",
-      rowsCount: 1250,
-    }
-  ]);
   const [isParsing, setIsParsing] = useState(false);
   const [syncToast, setSyncToast] = useState<{ show: boolean; text: string } | null>(null);
 
@@ -74,6 +63,7 @@ export default function ExcelIngestion({ onSyncComplete }: ExcelIngestionProps) 
         size: `${(file.size / (1024 * 1024)).toFixed(2)} MB`,
         progress: 0,
         status: isExcel ? "uploading" : "error",
+        rawFile: file, // <-- THIS IS THE NEW LINE
       };
 
       setFiles((prev) => [newFile, ...prev]);
@@ -123,7 +113,7 @@ export default function ExcelIngestion({ onSyncComplete }: ExcelIngestionProps) 
     setFiles((prev) => prev.filter((f) => f.id !== id));
   };
 
-  const handleParseAndSync = () => {
+  const handleParseAndSync = async () => {
     const readyFiles = files.filter((f) => f.status === "ready");
     if (readyFiles.length === 0) return;
 
@@ -134,39 +124,74 @@ export default function ExcelIngestion({ onSyncComplete }: ExcelIngestionProps) 
       prev.map((f) => (f.status === "ready" ? { ...f, status: "parsing" } : f))
     );
 
-    // Simulate database compilation and ingest
-    setTimeout(() => {
+    try {
       let totalRows = 0;
       let primaryFileName = "";
+      let parsedData: any[] = [];
 
+      // We will process the first ready file in the queue
+      const fileToProcess = readyFiles[0];
+      
+      if (fileToProcess.rawFile) {
+        primaryFileName = fileToProcess.name;
+        
+        // 1. Read the physical file into browser memory
+        const buffer = await fileToProcess.rawFile.arrayBuffer();
+        
+        // 2. Parse the Excel workbook
+        const workbook = XLSX.read(buffer, { type: 'array' });
+        
+        // 3. Grab the first sheet in the file
+        const firstSheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[firstSheetName];
+        
+        // 4. Convert the Excel sheet to raw JSON data!
+        parsedData = XLSX.utils.sheet_to_json(worksheet);
+        totalRows = parsedData.length;
+      }
+
+      // Update the file list to show it's successfully synced with the REAL row count
       setFiles((prev) => {
         return prev.map((f) => {
-          if (f.status === "parsing") {
-            totalRows += f.rowsCount || 0;
-            primaryFileName = f.name;
-            return { ...f, status: "synced" };
+          if (f.id === fileToProcess.id) {
+            return { ...f, status: "synced", rowsCount: totalRows };
           }
           return f;
         });
       });
 
+      // Update the global vault with the real data
+      updateMetrics({ 
+        importedRows: totalRows, 
+        sourceFile: primaryFileName,
+        sheetData: parsedData // <--- The actual Excel data is now in the vault!
+      });
+
       setIsParsing(false);
       
-      // Trigger callback if exists
       if (onSyncComplete) {
         onSyncComplete({ importedRows: totalRows, sourceFile: primaryFileName });
       }
 
-      // Display high-end Toast notification
+      // High-end Toast notification with real row count
       setSyncToast({
         show: true,
-        text: `Successfully synced ${totalRows} data nodes from ${primaryFileName} into high-speed memory caches!`,
+        text: `Successfully extracted ${totalRows} real rows from ${primaryFileName}!`,
       });
 
       setTimeout(() => {
         setSyncToast(null);
       }, 5000);
-    }, 1800);
+
+    } catch (error) {
+      console.error("Failed to parse Excel file:", error);
+      setIsParsing(false);
+      setSyncToast({
+        show: true,
+        text: `Error parsing file. Please check the schema format.`,
+      });
+      setTimeout(() => setSyncToast(null), 5000);
+    }
   };
 
   const triggerFileInput = () => {

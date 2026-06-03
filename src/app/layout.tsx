@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { IndustryProvider } from "@/context/IndustryContext";
+import { DataProvider } from "../context/DataContext";
+import { IndustryProvider } from "../context/IndustryContext";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Digyverse BI - Premium Business Intelligence Dashboard",
-  description: "Next-generation analytics dashboard for healthcare and enterprise operations.",
+  title: "Digyverse BI MVP",
+  description: "Dynamic Dashboard",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#09090b] text-[#fafafa] font-sans">
+    <html lang="en">
+      <body className={inter.className}>
+        {/* We wrap the app in BOTH providers now */}
         <IndustryProvider>
-          {children}
+          <DataProvider>
+            {children}
+          </DataProvider>
         </IndustryProvider>
       </body>
     </html>
   );
 }
-
