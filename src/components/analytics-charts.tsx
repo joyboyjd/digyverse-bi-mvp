@@ -153,7 +153,7 @@ export default function AnalyticsCharts({ viewState }: AnalyticsChartsProps) {
 
         <div className="h-[280px] w-full min-w-[200px]">
           <ResponsiveContainer width="100%" height={280}>
-            <AreaChart data={activeTimelineData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+            <AreaChart data={activeTimelineData as any[]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="primaryGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor={viewState === "healthcare" ? "#10b981" : "#3b82f6"} stopOpacity={0.25} />
@@ -217,7 +217,7 @@ export default function AnalyticsCharts({ viewState }: AnalyticsChartsProps) {
 
         <div className="h-[280px] w-full min-w-[200px]">
           <ResponsiveContainer width="100%" height={280}>
-            <BarChart data={activeRoiData} margin={{ top: 10, right: 0, left: 10, bottom: 0 }}>
+            <BarChart data={activeRoiData as any[]} margin={{ top: 10, right: 0, left: 10, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(63, 63, 70, 0.15)" />
               <XAxis dataKey="name" stroke="#71717a" fontSize={10} tickLine={false} axisLine={false} />
               <YAxis 
