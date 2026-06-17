@@ -1,0 +1,101 @@
+Patient_ID,Consultation_Date,Treatment_Type,Department,Billing_Amount_INR,Acquisition_Channel,Follow_Up_Required
+PT-1001,2026-02-12,OPD,General Medicine,1710,AarogyaOne,Yes
+PT-1002,2026-01-22,OPD,General Medicine,3456,Corporate Insurance,Yes
+PT-1003,2026-03-02,IPD,Cardiology/Oncology,172638,Direct Walk-in,No
+PT-1004,2026-03-11,IPD,Cardiology/Oncology,74553,Google Search,Yes
+PT-1005,2026-04-23,OPD,General Medicine,2058,Google Search,No
+PT-1006,2026-01-20,OPD,General Medicine,2919,AarogyaOne,Yes
+PT-1007,2026-02-07,OPD,General Medicine,3036,AarogyaOne,Yes
+PT-1008,2026-01-03,IPD,Cardiology/Oncology,180280,AarogyaOne,No
+PT-1009,2026-02-14,OPD,General Medicine,3217,Corporate Insurance,No
+PT-1010,2026-01-05,OPD,General Medicine,3178,Meta Ads,Yes
+PT-1011,2026-03-25,OPD,General Medicine,2689,AarogyaOne,No
+PT-1012,2026-05-16,OPD,General Medicine,2187,AarogyaOne,Yes
+PT-1013,2026-04-21,IPD,Cardiology/Oncology,160656,Corporate Insurance,No
+PT-1014,2026-01-26,OPD,General Medicine,3250,AarogyaOne,Yes
+PT-1015,2026-02-06,IPD,Cardiology/Oncology,75101,Direct Walk-in,Yes
+PT-1016,2026-01-20,OPD,General Medicine,1765,AarogyaOne,Yes
+PT-1017,2026-03-22,IPD,Cardiology/Oncology,215014,Meta Ads,No
+PT-1018,2026-04-09,OPD,General Medicine,1602,AarogyaOne,Yes
+PT-1019,2026-01-14,OPD,General Medicine,2167,Meta Ads,Yes
+PT-1020,2026-04-17,OPD,General Medicine,3027,AarogyaOne,Yes
+PT-1021,2026-02-14,OPD,General Medicine,2965,AarogyaOne,No
+PT-1022,2026-05-05,OPD,General Medicine,2600,AarogyaOne,Yes
+PT-1023,2026-04-01,OPD,General Medicine,1322,Direct Walk-in,Yes
+PT-1024,2026-03-22,IPD,Cardiology/Oncology,209588,Google Search,Yes
+PT-1025,2026-05-15,OPD,General Medicine,2667,Meta Ads,No
+PT-1026,2026-04-27,OPD,General Medicine,2627,Corporate Insurance,No
+PT-1027,2026-01-14,IPD,Cardiology/Oncology,219355,Direct Walk-in,Yes
+PT-1028,2026-02-17,IPD,Cardiology/Oncology,238291,Direct Walk-in,No
+PT-1029,2026-05-28,IPD,Cardiology/Oncology,120797,Meta Ads,Yes
+PT-1030,2026-05-12,IPD,Cardiology/Oncology,100393,Direct Walk-in,No
+PT-1031,2026-03-09,OPD,General Medicine,2871,Google Search,Yes
+PT-1032,2026-02-27,IPD,Cardiology/Oncology,192995,AarogyaOne,Yes
+PT-1033,2026-04-19,OPD,General Medicine,1222,Google Search,No
+PT-1034,2026-03-15,OPD,General Medicine,1566,Meta Ads,Yes
+PT-1035,2026-05-23,IPD,Cardiology/Oncology,223258,AarogyaOne,Yes
+PT-1036,2026-04-16,IPD,Cardiology/Oncology,157498,AarogyaOne,Yes
+PT-1037,2026-03-15,OPD,General Medicine,2015,Meta Ads,No
+PT-1038,2026-02-24,IPD,Cardiology/Oncology,218000,Google Search,Yes
+PT-1039,2026-02-02,IPD,Cardiology/Oncology,98135,Meta Ads,Yes
+PT-1040,2026-02-04,IPD,Cardiology/Oncology,107269,Google Search,No
+PT-1041,2026-05-09,OPD,General Medicine,3023,Meta Ads,Yes
+PT-1042,2026-01-15,IPD,Cardiology/Oncology,65746,AarogyaOne,No
+PT-1043,2026-04-08,IPD,Cardiology/Oncology,183837,AarogyaOne,No
+PT-1044,2026-04-15,OPD,General Medicine,1737,Meta Ads,No
+PT-1045,2026-05-17,OPD,General Medicine,2204,Google Search,No
+PT-1046,2026-05-24,IPD,Cardiology/Oncology,225661,Google Search,Yes
+PT-1047,2026-04-11,OPD,General Medicine,2141,Meta Ads,No
+PT-1048,2026-05-25,IPD,Cardiology/Oncology,76202,Corporate Insurance,No
+PT-1049,2026-04-25,OPD,General Medicine,3204,Direct Walk-in,Yes
+PT-1050,2026-01-05,OPD,General Medicine,2227,AarogyaOne,No
+PT-1051,2026-05-16,OPD,General Medicine,2204,AarogyaOne,No
+PT-1052,2026-05-18,OPD,General Medicine,2509,Corporate Insurance,No
+PT-1053,2026-05-06,OPD,General Medicine,3138,Meta Ads,Yes
+PT-1054,2026-01-19,IPD,Cardiology/Oncology,145634,Corporate Insurance,No
+PT-1055,2026-04-04,OPD,General Medicine,3402,Direct Walk-in,Yes
+PT-1056,2026-04-22,OPD,General Medicine,1350,Meta Ads,Yes
+PT-1057,2026-04-03,OPD,General Medicine,2251,AarogyaOne,Yes
+PT-1058,2026-04-06,IPD,Cardiology/Oncology,66236,AarogyaOne,Yes
+PT-1059,2026-05-12,IPD,Cardiology/Oncology,91345,Meta Ads,No
+PT-1060,2026-01-10,IPD,Cardiology/Oncology,144480,AarogyaOne,Yes
+PT-1061,2026-03-04,OPD,General Medicine,3350,Google Search,Yes
+PT-1062,2026-05-26,OPD,General Medicine,1388,Google Search,No
+PT-1063,2026-04-07,OPD,General Medicine,1592,AarogyaOne,Yes
+PT-1064,2026-04-21,IPD,Cardiology/Oncology,198719,Meta Ads,Yes
+PT-1065,2026-05-04,IPD,Cardiology/Oncology,138846,Google Search,Yes
+PT-1066,2026-05-14,OPD,General Medicine,2847,AarogyaOne,No
+PT-1067,2026-03-12,OPD,General Medicine,1763,Google Search,Yes
+PT-1068,2026-01-08,IPD,Cardiology/Oncology,123571,Corporate Insurance,Yes
+PT-1069,2026-01-04,IPD,Cardiology/Oncology,129331,Direct Walk-in,Yes
+PT-1070,2026-04-27,OPD,General Medicine,2918,AarogyaOne,No
+PT-1071,2026-05-19,IPD,Cardiology/Oncology,196407,Google Search,Yes
+PT-1072,2026-05-05,IPD,Cardiology/Oncology,202782,AarogyaOne,Yes
+PT-1073,2026-05-25,OPD,General Medicine,3357,Corporate Insurance,No
+PT-1074,2026-03-08,OPD,General Medicine,3454,Direct Walk-in,Yes
+PT-1075,2026-02-12,IPD,Cardiology/Oncology,109977,Direct Walk-in,Yes
+PT-1076,2026-02-08,OPD,General Medicine,3283,Corporate Insurance,Yes
+PT-1077,2026-02-17,IPD,Cardiology/Oncology,144158,AarogyaOne,Yes
+PT-1078,2026-04-24,OPD,General Medicine,1244,Direct Walk-in,No
+PT-1079,2026-04-18,OPD,General Medicine,3443,AarogyaOne,No
+PT-1080,2026-03-07,OPD,General Medicine,2171,AarogyaOne,Yes
+PT-1081,2026-04-05,OPD,General Medicine,1804,AarogyaOne,Yes
+PT-1082,2026-02-27,IPD,Cardiology/Oncology,65643,Direct Walk-in,Yes
+PT-1083,2026-01-26,IPD,Cardiology/Oncology,75783,Direct Walk-in,No
+PT-1084,2026-03-09,OPD,General Medicine,1638,AarogyaOne,Yes
+PT-1085,2026-03-14,OPD,General Medicine,2696,Direct Walk-in,Yes
+PT-1086,2026-05-07,OPD,General Medicine,3145,AarogyaOne,Yes
+PT-1087,2026-02-03,OPD,General Medicine,2154,Direct Walk-in,Yes
+PT-1088,2026-03-03,IPD,Cardiology/Oncology,197610,Google Search,Yes
+PT-1089,2026-01-10,IPD,Cardiology/Oncology,86630,AarogyaOne,No
+PT-1090,2026-05-19,IPD,Cardiology/Oncology,137548,AarogyaOne,Yes
+PT-1091,2026-03-26,OPD,General Medicine,1349,Meta Ads,No
+PT-1092,2026-04-20,OPD,General Medicine,2849,Google Search,Yes
+PT-1093,2026-02-16,OPD,General Medicine,2063,AarogyaOne,No
+PT-1094,2026-01-04,OPD,General Medicine,1987,AarogyaOne,Yes
+PT-1095,2026-04-21,IPD,Cardiology/Oncology,242806,Direct Walk-in,No
+PT-1096,2026-03-23,IPD,Cardiology/Oncology,210855,Corporate Insurance,Yes
+PT-1097,2026-05-02,IPD,Cardiology/Oncology,147484,AarogyaOne,Yes
+PT-1098,2026-05-25,OPD,General Medicine,1549,Meta Ads,Yes
+PT-1099,2026-02-04,OPD,General Medicine,2908,Meta Ads,No
+PT-1100,2026-04-28,IPD,Cardiology/Oncology,86199,AarogyaOne,No

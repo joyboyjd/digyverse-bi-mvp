@@ -1,0 +1,101 @@
+Patient_ID,Consultation_Date,Treatment_Type,Department,Billing_Amount_INR,Acquisition_Channel,Follow_Up_Required
+PT-1001,2026-03-23,OPD,Consultation,1339,AarogyaOne,Yes
+PT-1002,2026-05-06,OPD,Consultation,798,AarogyaOne,Yes
+PT-1003,2026-01-25,OPD,Consultation,877,AarogyaOne,No
+PT-1004,2026-04-26,OPD,Consultation,1482,Direct Walk-in,Yes
+PT-1005,2026-01-01,OPD,Consultation,1204,Direct Walk-in,Yes
+PT-1006,2026-05-17,OPD,Consultation,781,Instagram Ads,No
+PT-1007,2026-03-15,OPD,Consultation,1378,Google Local,Yes
+PT-1008,2026-02-16,OPD,Consultation,1390,Direct Walk-in,No
+PT-1009,2026-02-19,OPD,Consultation,1122,Instagram Ads,Yes
+PT-1010,2026-05-16,IPD,Day Care Surgery,20977,Direct Walk-in,Yes
+PT-1011,2026-03-09,OPD,Consultation,839,Instagram Ads,Yes
+PT-1012,2026-04-09,OPD,Consultation,879,Direct Walk-in,Yes
+PT-1013,2026-02-26,OPD,Consultation,963,Instagram Ads,Yes
+PT-1014,2026-01-03,OPD,Consultation,912,Direct Walk-in,No
+PT-1015,2026-03-20,OPD,Consultation,1127,Google Local,Yes
+PT-1016,2026-04-28,OPD,Consultation,1225,Google Local,Yes
+PT-1017,2026-05-03,OPD,Consultation,1079,AarogyaOne,No
+PT-1018,2026-01-26,OPD,Consultation,1266,Google Local,Yes
+PT-1019,2026-02-21,OPD,Consultation,705,Instagram Ads,Yes
+PT-1020,2026-03-07,OPD,Consultation,833,Google Local,Yes
+PT-1021,2026-03-19,OPD,Consultation,632,Instagram Ads,Yes
+PT-1022,2026-03-18,OPD,Consultation,951,Google Local,Yes
+PT-1023,2026-01-09,OPD,Consultation,887,Instagram Ads,Yes
+PT-1024,2026-02-27,OPD,Consultation,677,Instagram Ads,No
+PT-1025,2026-05-13,OPD,Consultation,1116,AarogyaOne,Yes
+PT-1026,2026-04-10,OPD,Consultation,727,Instagram Ads,Yes
+PT-1027,2026-02-01,OPD,Consultation,1347,Direct Walk-in,Yes
+PT-1028,2026-04-24,OPD,Consultation,944,Instagram Ads,No
+PT-1029,2026-03-01,OPD,Consultation,1315,Instagram Ads,Yes
+PT-1030,2026-05-08,OPD,Consultation,1384,Google Local,Yes
+PT-1031,2026-03-06,OPD,Consultation,1395,Instagram Ads,No
+PT-1032,2026-02-14,OPD,Consultation,949,Instagram Ads,Yes
+PT-1033,2026-04-07,OPD,Consultation,715,Instagram Ads,Yes
+PT-1034,2026-02-26,OPD,Consultation,636,Google Local,Yes
+PT-1035,2026-02-06,OPD,Consultation,908,Google Local,No
+PT-1036,2026-01-23,OPD,Consultation,1411,Instagram Ads,Yes
+PT-1037,2026-04-27,OPD,Consultation,1191,Instagram Ads,Yes
+PT-1038,2026-02-19,OPD,Consultation,712,Instagram Ads,Yes
+PT-1039,2026-04-18,OPD,Consultation,1427,Instagram Ads,Yes
+PT-1040,2026-05-07,OPD,Consultation,600,Instagram Ads,Yes
+PT-1041,2026-01-14,OPD,Consultation,1369,AarogyaOne,Yes
+PT-1042,2026-04-19,OPD,Consultation,829,AarogyaOne,No
+PT-1043,2026-01-07,OPD,Consultation,1236,Google Local,No
+PT-1044,2026-02-28,OPD,Consultation,908,Direct Walk-in,Yes
+PT-1045,2026-05-02,OPD,Consultation,1397,Instagram Ads,No
+PT-1046,2026-05-07,OPD,Consultation,952,Google Local,Yes
+PT-1047,2026-01-18,OPD,Consultation,1414,Direct Walk-in,Yes
+PT-1048,2026-05-02,OPD,Consultation,755,Instagram Ads,No
+PT-1049,2026-01-07,OPD,Consultation,1424,Instagram Ads,Yes
+PT-1050,2026-02-10,OPD,Consultation,1033,AarogyaOne,Yes
+PT-1051,2026-05-27,OPD,Consultation,1068,Instagram Ads,Yes
+PT-1052,2026-02-19,OPD,Consultation,1233,Direct Walk-in,No
+PT-1053,2026-04-18,OPD,Consultation,1349,Google Local,No
+PT-1054,2026-01-02,OPD,Consultation,1258,Instagram Ads,No
+PT-1055,2026-01-11,OPD,Consultation,707,Direct Walk-in,Yes
+PT-1056,2026-05-28,OPD,Consultation,1250,Instagram Ads,Yes
+PT-1057,2026-02-24,OPD,Consultation,840,Instagram Ads,Yes
+PT-1058,2026-03-19,OPD,Consultation,863,Google Local,No
+PT-1059,2026-04-23,OPD,Consultation,747,Instagram Ads,Yes
+PT-1060,2026-05-06,OPD,Consultation,1091,Instagram Ads,Yes
+PT-1061,2026-04-04,OPD,Consultation,1196,Direct Walk-in,No
+PT-1062,2026-02-17,OPD,Consultation,1290,Instagram Ads,Yes
+PT-1063,2026-05-04,OPD,Consultation,638,Google Local,Yes
+PT-1064,2026-03-16,OPD,Consultation,611,AarogyaOne,Yes
+PT-1065,2026-04-15,OPD,Consultation,895,Instagram Ads,No
+PT-1066,2026-02-26,OPD,Consultation,1047,Instagram Ads,No
+PT-1067,2026-05-06,OPD,Consultation,1117,Instagram Ads,No
+PT-1068,2026-05-12,OPD,Consultation,684,Direct Walk-in,Yes
+PT-1069,2026-03-23,OPD,Consultation,1326,Instagram Ads,Yes
+PT-1070,2026-03-05,OPD,Consultation,745,Instagram Ads,Yes
+PT-1071,2026-02-01,OPD,Consultation,1299,Instagram Ads,No
+PT-1072,2026-05-17,OPD,Consultation,1231,Instagram Ads,Yes
+PT-1073,2026-03-25,OPD,Consultation,995,Instagram Ads,Yes
+PT-1074,2026-04-28,OPD,Consultation,1152,Instagram Ads,Yes
+PT-1075,2026-02-21,OPD,Consultation,1274,Direct Walk-in,Yes
+PT-1076,2026-05-22,OPD,Consultation,822,AarogyaOne,Yes
+PT-1077,2026-03-06,OPD,Consultation,993,Instagram Ads,No
+PT-1078,2026-05-07,OPD,Consultation,801,Google Local,Yes
+PT-1079,2026-03-06,OPD,Consultation,993,Direct Walk-in,No
+PT-1080,2026-05-07,OPD,Consultation,1336,Instagram Ads,Yes
+PT-1081,2026-02-05,OPD,Consultation,1082,Instagram Ads,No
+PT-1082,2026-02-23,OPD,Consultation,1432,Google Local,No
+PT-1083,2026-05-10,OPD,Consultation,1086,Direct Walk-in,Yes
+PT-1084,2026-01-28,OPD,Consultation,1185,Instagram Ads,No
+PT-1085,2026-04-15,OPD,Consultation,1464,Direct Walk-in,Yes
+PT-1086,2026-05-26,OPD,Consultation,806,Direct Walk-in,Yes
+PT-1087,2026-02-07,OPD,Consultation,698,Direct Walk-in,Yes
+PT-1088,2026-05-26,OPD,Consultation,1379,Google Local,Yes
+PT-1089,2026-03-08,OPD,Consultation,1056,Instagram Ads,No
+PT-1090,2026-03-14,OPD,Consultation,1424,Google Local,Yes
+PT-1091,2026-03-09,OPD,Consultation,984,Instagram Ads,Yes
+PT-1092,2026-05-04,OPD,Consultation,751,Instagram Ads,No
+PT-1093,2026-05-08,OPD,Consultation,1451,AarogyaOne,Yes
+PT-1094,2026-04-23,OPD,Consultation,832,Instagram Ads,Yes
+PT-1095,2026-04-18,OPD,Consultation,1314,Instagram Ads,No
+PT-1096,2026-04-20,OPD,Consultation,839,Google Local,No
+PT-1097,2026-01-11,OPD,Consultation,1261,Google Local,No
+PT-1098,2026-02-27,OPD,Consultation,1333,Google Local,Yes
+PT-1099,2026-05-04,OPD,Consultation,866,Google Local,Yes
+PT-1100,2026-01-09,IPD,Day Care Surgery,19602,Instagram Ads,No

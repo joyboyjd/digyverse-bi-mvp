@@ -1,0 +1,101 @@
+Patient_ID,Consultation_Date,Treatment_Type,Department,Billing_Amount_INR,Acquisition_Channel,Follow_Up_Required
+PT-1001,2026-04-07,IPD,Joint Replacement,347610,JustDial,Yes
+PT-1002,2026-05-26,IPD,Joint Replacement,173959,Referral PRO,No
+PT-1003,2026-03-13,OPD,Physiotherapy,1542,AarogyaOne,Yes
+PT-1004,2026-05-12,OPD,Physiotherapy,1552,Direct Walk-in,No
+PT-1005,2026-04-22,OPD,Physiotherapy,1551,AarogyaOne,No
+PT-1006,2026-01-22,IPD,Joint Replacement,234977,AarogyaOne,Yes
+PT-1007,2026-03-07,OPD,Physiotherapy,1688,Referral PRO,Yes
+PT-1008,2026-04-24,OPD,Physiotherapy,1786,Referral PRO,No
+PT-1009,2026-01-04,OPD,Physiotherapy,1691,Direct Walk-in,Yes
+PT-1010,2026-05-05,OPD,Physiotherapy,1532,AarogyaOne,Yes
+PT-1011,2026-05-01,OPD,Physiotherapy,1569,Direct Walk-in,Yes
+PT-1012,2026-02-15,IPD,Joint Replacement,169759,Direct Walk-in,Yes
+PT-1013,2026-05-13,OPD,Physiotherapy,1706,AarogyaOne,Yes
+PT-1014,2026-01-27,IPD,Joint Replacement,229010,AarogyaOne,Yes
+PT-1015,2026-01-13,OPD,Physiotherapy,1753,JustDial,Yes
+PT-1016,2026-02-06,IPD,Joint Replacement,171098,AarogyaOne,No
+PT-1017,2026-02-16,OPD,Physiotherapy,1990,AarogyaOne,No
+PT-1018,2026-02-06,OPD,Physiotherapy,1704,Direct Walk-in,No
+PT-1019,2026-05-17,OPD,Physiotherapy,1933,Direct Walk-in,Yes
+PT-1020,2026-05-08,OPD,Physiotherapy,1590,JustDial,Yes
+PT-1021,2026-05-25,OPD,Physiotherapy,1631,AarogyaOne,Yes
+PT-1022,2026-02-05,OPD,Physiotherapy,1566,Referral PRO,No
+PT-1023,2026-01-05,OPD,Physiotherapy,1947,AarogyaOne,No
+PT-1024,2026-04-28,OPD,Physiotherapy,1530,Direct Walk-in,Yes
+PT-1025,2026-03-10,OPD,Physiotherapy,1718,AarogyaOne,No
+PT-1026,2026-01-12,OPD,Physiotherapy,1983,Referral PRO,Yes
+PT-1027,2026-04-15,OPD,Physiotherapy,1904,AarogyaOne,Yes
+PT-1028,2026-04-11,OPD,Physiotherapy,1844,Referral PRO,Yes
+PT-1029,2026-04-08,OPD,Physiotherapy,1933,JustDial,Yes
+PT-1030,2026-05-07,IPD,Joint Replacement,175545,Direct Walk-in,No
+PT-1031,2026-04-15,OPD,Physiotherapy,1762,JustDial,Yes
+PT-1032,2026-01-07,OPD,Physiotherapy,1839,AarogyaOne,Yes
+PT-1033,2026-05-25,OPD,Physiotherapy,1818,AarogyaOne,No
+PT-1034,2026-05-01,OPD,Physiotherapy,1710,Direct Walk-in,No
+PT-1035,2026-03-09,OPD,Physiotherapy,1862,AarogyaOne,Yes
+PT-1036,2026-01-09,OPD,Physiotherapy,1541,AarogyaOne,No
+PT-1037,2026-03-20,IPD,Joint Replacement,147757,AarogyaOne,Yes
+PT-1038,2026-02-09,OPD,Physiotherapy,1625,Referral PRO,No
+PT-1039,2026-03-28,OPD,Physiotherapy,1952,Referral PRO,Yes
+PT-1040,2026-05-20,OPD,Physiotherapy,1912,Direct Walk-in,No
+PT-1041,2026-02-13,OPD,Physiotherapy,1528,AarogyaOne,Yes
+PT-1042,2026-04-17,OPD,Physiotherapy,1813,Direct Walk-in,Yes
+PT-1043,2026-01-08,OPD,Physiotherapy,1773,JustDial,No
+PT-1044,2026-03-06,OPD,Physiotherapy,1500,Direct Walk-in,No
+PT-1045,2026-04-10,OPD,Physiotherapy,1927,AarogyaOne,Yes
+PT-1046,2026-01-06,OPD,Physiotherapy,1643,Direct Walk-in,Yes
+PT-1047,2026-03-06,OPD,Physiotherapy,1709,AarogyaOne,No
+PT-1048,2026-04-27,OPD,Physiotherapy,1598,Direct Walk-in,Yes
+PT-1049,2026-04-02,OPD,Physiotherapy,1774,JustDial,Yes
+PT-1050,2026-05-08,OPD,Physiotherapy,1895,Referral PRO,Yes
+PT-1051,2026-02-04,OPD,Physiotherapy,1598,Direct Walk-in,Yes
+PT-1052,2026-03-16,OPD,Physiotherapy,1635,Direct Walk-in,No
+PT-1053,2026-03-09,OPD,Physiotherapy,1714,AarogyaOne,No
+PT-1054,2026-05-15,OPD,Physiotherapy,1980,JustDial,Yes
+PT-1055,2026-02-20,OPD,Physiotherapy,1843,JustDial,Yes
+PT-1056,2026-02-24,OPD,Physiotherapy,1891,AarogyaOne,Yes
+PT-1057,2026-05-23,OPD,Physiotherapy,1862,Direct Walk-in,Yes
+PT-1058,2026-02-11,OPD,Physiotherapy,1968,AarogyaOne,Yes
+PT-1059,2026-02-15,OPD,Physiotherapy,1980,AarogyaOne,Yes
+PT-1060,2026-01-23,OPD,Physiotherapy,1997,AarogyaOne,Yes
+PT-1061,2026-04-23,OPD,Physiotherapy,1937,Referral PRO,Yes
+PT-1062,2026-02-09,OPD,Physiotherapy,1644,AarogyaOne,No
+PT-1063,2026-04-02,OPD,Physiotherapy,1523,AarogyaOne,No
+PT-1064,2026-01-28,OPD,Physiotherapy,1650,AarogyaOne,No
+PT-1065,2026-03-19,OPD,Physiotherapy,1615,JustDial,Yes
+PT-1066,2026-03-19,OPD,Physiotherapy,1762,JustDial,No
+PT-1067,2026-04-23,OPD,Physiotherapy,1735,Direct Walk-in,No
+PT-1068,2026-04-06,OPD,Physiotherapy,1972,AarogyaOne,No
+PT-1069,2026-04-10,IPD,Joint Replacement,228665,AarogyaOne,No
+PT-1070,2026-01-06,OPD,Physiotherapy,1730,AarogyaOne,Yes
+PT-1071,2026-05-25,OPD,Physiotherapy,1754,JustDial,No
+PT-1072,2026-04-14,OPD,Physiotherapy,1553,Direct Walk-in,Yes
+PT-1073,2026-01-14,OPD,Physiotherapy,1910,Referral PRO,No
+PT-1074,2026-05-08,IPD,Joint Replacement,297000,AarogyaOne,No
+PT-1075,2026-03-06,OPD,Physiotherapy,1996,Referral PRO,No
+PT-1076,2026-05-04,OPD,Physiotherapy,1562,Referral PRO,Yes
+PT-1077,2026-04-05,OPD,Physiotherapy,1519,JustDial,Yes
+PT-1078,2026-05-27,OPD,Physiotherapy,1926,AarogyaOne,No
+PT-1079,2026-01-16,OPD,Physiotherapy,1863,AarogyaOne,No
+PT-1080,2026-01-07,OPD,Physiotherapy,1675,Referral PRO,No
+PT-1081,2026-01-21,OPD,Physiotherapy,1914,Referral PRO,Yes
+PT-1082,2026-04-19,IPD,Joint Replacement,123937,Referral PRO,Yes
+PT-1083,2026-03-10,OPD,Physiotherapy,1587,AarogyaOne,Yes
+PT-1084,2026-03-07,OPD,Physiotherapy,1596,JustDial,Yes
+PT-1085,2026-03-26,OPD,Physiotherapy,1613,JustDial,Yes
+PT-1086,2026-04-09,OPD,Physiotherapy,1818,Referral PRO,Yes
+PT-1087,2026-05-18,OPD,Physiotherapy,1720,AarogyaOne,Yes
+PT-1088,2026-04-18,IPD,Joint Replacement,225353,Referral PRO,Yes
+PT-1089,2026-04-26,OPD,Physiotherapy,1776,AarogyaOne,Yes
+PT-1090,2026-05-08,OPD,Physiotherapy,1782,JustDial,Yes
+PT-1091,2026-05-19,OPD,Physiotherapy,1821,AarogyaOne,No
+PT-1092,2026-03-14,OPD,Physiotherapy,1836,Direct Walk-in,Yes
+PT-1093,2026-04-26,OPD,Physiotherapy,1695,AarogyaOne,Yes
+PT-1094,2026-03-25,OPD,Physiotherapy,1796,Referral PRO,Yes
+PT-1095,2026-05-16,OPD,Physiotherapy,1644,Referral PRO,Yes
+PT-1096,2026-04-15,OPD,Physiotherapy,1987,Referral PRO,Yes
+PT-1097,2026-04-14,IPD,Joint Replacement,247896,Direct Walk-in,Yes
+PT-1098,2026-05-14,IPD,Joint Replacement,136916,JustDial,No
+PT-1099,2026-03-06,OPD,Physiotherapy,1617,AarogyaOne,No
+PT-1100,2026-03-07,IPD,Joint Replacement,191937,AarogyaOne,No
