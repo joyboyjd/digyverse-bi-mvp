@@ -6,7 +6,9 @@ import DashboardHeader from "@/components/dashboard-header";
 import MetricCard from "@/components/metric-card";
 import { useData } from "@/context/DataContext";
 
-// UPDATED LUCIDE ICONS (More specific to healthcare & ops)
+// We need to import Recharts here now for the Custom Builder!
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
+
 import {
   Users, Bed, IndianRupee, Trophy, Settings, Activity, Building, Stethoscope, 
   LineChart, UserPlus, BarChart4, Play, UserMinus, Clock, RotateCw, CheckCircle, 
@@ -17,12 +19,74 @@ export default function KPIDashboard() {
   const { parsedMetrics } = useData();
   const [activeTab, setActiveTab] = useState("opd");
 
+  // Custom KPI Builder State
   const [queryMetric, setQueryMetric] = useState("Sum");
   const [queryTarget, setQueryTarget] = useState("Billing_Amount_INR");
   const [queryGroup, setQueryGroup] = useState("Acquisition_Channel");
+  
+  // NEW: State to hold the generated chart data
+  const [customChartData, setCustomChartData] = useState<any[] | null>(null);
 
   const handleRefresh = () => {
     alert("Reloading KPI Data...");
+  };
+
+  // --- THE MATH ENGINE FOR CUSTOM BUILDER ---
+  const handleGenerateCustomKPI = () => {
+    if (!parsedMetrics?.sheetData || parsedMetrics.sheetData.length === 0) {
+      alert("No data available! Please upload an Excel sheet in the Ingestion tab first.");
+      return;
+    }
+
+    const data = parsedMetrics.sheetData;
+    const groupMap: Record<string, { total: number, count: number, max: number }> = {};
+
+    // 1. Parse and Group the Data
+    data.forEach((row: any) => {
+      const groupVal = row[queryGroup] || "Unknown";
+      let targetVal = 0;
+
+      // Handle strings (like counting patients) vs numbers (like summing revenue)
+      if (queryMetric === "Count" || queryTarget === "Patient_ID" || queryTarget === "Consultation_Date") {
+        targetVal = 1; 
+      } else {
+        targetVal = Number(row[queryTarget]) || 0;
+      }
+
+      if (!groupMap[groupVal]) {
+        groupMap[groupVal] = { total: 0, count: 0, max: -Infinity };
+      }
+
+      groupMap[groupVal].total += targetVal;
+      groupMap[groupVal].count += 1;
+      if (targetVal > groupMap[groupVal].max) {
+        groupMap[groupVal].max = targetVal;
+      }
+    });
+
+    // 2. Apply the chosen Math operation
+    const formattedData = Object.keys(groupMap).map(key => {
+      let finalValue = 0;
+      
+      if (queryMetric === "Count") {
+        finalValue = groupMap[key].count;
+      } else if (queryMetric === "Sum") {
+        finalValue = groupMap[key].total;
+      } else if (queryMetric === "Average") {
+        finalValue = groupMap[key].total / groupMap[key].count;
+      } else if (queryMetric === "Max") {
+        finalValue = groupMap[key].max === -Infinity ? 0 : groupMap[key].max;
+      }
+
+      return {
+        name: key,
+        value: Number(finalValue.toFixed(2)) // Keep decimals clean
+      };
+    });
+
+    // 3. Sort highest to lowest and save to state
+    formattedData.sort((a, b) => b.value - a.value);
+    setCustomChartData(formattedData);
   };
 
   const tabs = [
@@ -315,16 +379,59 @@ export default function KPIDashboard() {
                       <option value="Follow_Up_Required">Follow-Up Status</option>
                     </select>
 
-                    <button className="ml-auto flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 px-6 py-2 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                    <button 
+                      onClick={handleGenerateCustomKPI}
+                      className="ml-auto flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 px-6 py-2 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]"
+                    >
                       <Play fill="currentColor" size={16} />
                       Generate Metric
                     </button>
                   </div>
 
-                  <div className="h-[250px] border-2 border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-zinc-500 bg-zinc-950/30">
-                    <BarChart4 size={48} className="mb-4 opacity-50 text-zinc-600" />
-                    <p className="font-sans text-sm">Select your parameters and click Generate to build a custom graph.</p>
-                  </div>
+                  {/* DYNAMIC RESULT AREA */}
+                  {customChartData ? (
+                    <div className="h-[300px] bg-zinc-950/30 p-6 border border-zinc-800/80 rounded-xl animate-in fade-in duration-500">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart data={customChartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(63, 63, 70, 0.15)" vertical={false} />
+                          <XAxis dataKey="name" stroke="#71717a" fontSize={11} tickLine={false} axisLine={false} />
+                          <YAxis 
+                            stroke="#71717a" 
+                            fontSize={11} 
+                            tickLine={false} 
+                            axisLine={false}
+                            tickFormatter={(val) => queryTarget === "Billing_Amount_INR" && queryMetric !== "Count" ? `₹${(val/1000).toFixed(0)}k` : val}
+                          />
+                          <Tooltip
+  cursor={{ fill: "rgba(16, 185, 129, 0.05)" }}
+  contentStyle={{
+    backgroundColor: "#09090b",
+    border: "1px solid rgba(63, 63, 70, 0.5)",
+    borderRadius: "12px",
+    fontSize: "12px",
+    fontFamily: "var(--font-inter)",
+  }}
+  formatter={(value: any) => {
+    if (queryTarget === "Billing_Amount_INR" && queryMetric !== "Count") {
+      return [`₹${Number(value).toLocaleString("en-IN")}`, queryMetric];
+    }
+    return [value, queryMetric];
+  }}
+/>
+                          <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={60}>
+                            {customChartData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={index === 0 ? "#10b981" : index === 1 ? "#3b82f6" : "#a855f7"} />
+                            ))}
+                          </Bar>
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                  ) : (
+                    <div className="h-[250px] border-2 border-dashed border-zinc-800 rounded-xl flex flex-col items-center justify-center text-zinc-500 bg-zinc-950/30">
+                      <BarChart4 size={48} className="mb-4 opacity-50 text-zinc-600" />
+                      <p className="font-sans text-sm">Select your parameters and click Generate to build a custom graph.</p>
+                    </div>
+                  )}
 
                 </div>
               </div>
