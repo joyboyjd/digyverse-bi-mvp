@@ -1,18 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Sidebar from "@/components/sidebar";
 import DashboardHeader from "@/components/dashboard-header";
 import MetricCard from "@/components/metric-card";
 import { useData } from "@/context/DataContext";
-
-// We need to import Recharts here now for the Custom Builder!
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
-
 import {
   Users, Bed, IndianRupee, Trophy, Settings, Activity, Building, Stethoscope, 
   LineChart, UserPlus, BarChart4, Play, UserMinus, Clock, RotateCw, CheckCircle, 
-  Pill, Microscope, Target
+  Pill, Microscope, Target, Wallet, CreditCard
 } from "lucide-react";
 
 export default function KPIDashboard() {
@@ -23,69 +20,135 @@ export default function KPIDashboard() {
   const [queryMetric, setQueryMetric] = useState("Sum");
   const [queryTarget, setQueryTarget] = useState("Billing_Amount_INR");
   const [queryGroup, setQueryGroup] = useState("Acquisition_Channel");
-  
-  // NEW: State to hold the generated chart data
   const [customChartData, setCustomChartData] = useState<any[] | null>(null);
 
-  const handleRefresh = () => {
-    alert("Reloading KPI Data...");
-  };
+  const handleRefresh = () => alert("Reloading KPI Data...");
+
+  const data = parsedMetrics?.sheetData || [];
+
+  // --- DYNAMIC DATA AGGREGATION ENGINE ---
+  const stats = useMemo(() => {
+    let opdCount = 0;
+    let ipdCount = 0;
+    let totalWaitTime = 0;
+    let opdConvertedToIpd = 0;
+    
+    let totalLos = 0;
+    let totalDischargeTat = 0;
+    let surgerySuccessCount = 0;
+    let procedureCount = 0;
+
+    let pharmacyRevenue = 0;
+    let labRevenue = 0;
+    let totalRevenue = 0;
+    let cashRevenue = 0;
+    let creditRevenue = 0;
+    
+    let pharmacyFilled = 0;
+    let labOrdered = 0;
+    
+    const deptCount: Record<string, number> = {};
+    const docRevenue: Record<string, number> = {};
+    const docConsults: Record<string, number> = {};
+    const channelCount: Record<string, number> = {};
+    const uniquePROs = new Set();
+
+    data.forEach((row: any) => {
+      const isIPD = row.Visit_Type === "IPD";
+      const dept = row.Department || "Unknown";
+      const doc = row.Doctor_ID || "Unknown";
+      const channel = row.Acquisition_Channel || "Unknown";
+      const pro = row.PRO_ID;
+      
+      const pRev = Number(row.Pharmacy_Revenue) || 0;
+      const lRev = Number(row.Lab_Revenue) || 0;
+      const procRev = Number(row.Procedure_Revenue) || 0;
+      const consultRev = Number(row.Revenue_Consultation) || 0;
+      const rowTotal = pRev + lRev + procRev + consultRev;
+
+      // Classify Revenue
+      totalRevenue += rowTotal;
+      if (row.Payment_Type === "Cash") cashRevenue += rowTotal;
+      else creditRevenue += rowTotal;
+
+      pharmacyRevenue += pRev;
+      labRevenue += lRev;
+
+      // Leakage Tracking
+      if (row.Pharmacy_Prescription_Filled === "Yes" || pRev > 0) pharmacyFilled++;
+      if (row.Diagnostic_Ordered === "Yes" || lRev > 0) labOrdered++;
+
+      // Department & Doctor Tracking
+      deptCount[dept] = (deptCount[dept] || 0) + 1;
+      docRevenue[doc] = (docRevenue[doc] || 0) + rowTotal;
+      docConsults[doc] = (docConsults[doc] || 0) + 1;
+      channelCount[channel] = (channelCount[channel] || 0) + 1;
+      if (pro) uniquePROs.add(pro);
+
+      if (isIPD) {
+        ipdCount++;
+        totalLos += Number(row.Length_Of_Stay_Days) || 0;
+        totalDischargeTat += Number(row.Discharge_TAT_Mins) || 0;
+        procedureCount++;
+        if (row.Surgery_Success !== "No") surgerySuccessCount++; 
+      } else {
+        opdCount++;
+        totalWaitTime += Number(row.OPD_Wait_Time_Mins) || 0;
+        if (row.Converted_To_IPD === "Yes") opdConvertedToIpd++;
+      }
+    });
+
+    // Formatting outputs
+    const topDept = Object.keys(deptCount).sort((a, b) => deptCount[b] - deptCount[a])[0] || "N/A";
+    const topDocRev = Object.keys(docRevenue).sort((a, b) => docRevenue[b] - docRevenue[a])[0] || "N/A";
+    const topDocVol = Object.keys(docConsults).sort((a, b) => docConsults[b] - docConsults[a])[0] || "N/A";
+    const topChannel = Object.keys(channelCount).sort((a, b) => channelCount[b] - channelCount[a])[0] || "N/A";
+
+    return {
+      opdWalkIns: opdCount,
+      avgWaitTime: opdCount ? Math.round(totalWaitTime / opdCount) : 0,
+      opdConversion: opdCount ? ((opdConvertedToIpd / opdCount) * 100).toFixed(1) : 0,
+      topDept,
+      
+      alos: ipdCount ? (totalLos / ipdCount).toFixed(1) : 0,
+      avgDischargeTat: ipdCount ? Math.round(totalDischargeTat / ipdCount) : 0,
+      surgerySuccess: procedureCount ? ((surgerySuccessCount / procedureCount) * 100).toFixed(1) : 0,
+      
+      pharmacyAttachment: data.length ? ((pharmacyFilled / data.length) * 100).toFixed(1) : 0,
+      labAttachment: data.length ? ((labOrdered / data.length) * 100).toFixed(1) : 0,
+      cashVsCredit: { cash: cashRevenue, credit: creditRevenue },
+      
+      topDocRev: { name: topDocRev, val: docRevenue[topDocRev] || 0 },
+      topDocVol: { name: topDocVol, val: docConsults[topDocVol] || 0 },
+      topChannel,
+      proCount: uniquePROs.size
+    };
+  }, [data]);
 
   // --- THE MATH ENGINE FOR CUSTOM BUILDER ---
   const handleGenerateCustomKPI = () => {
-    if (!parsedMetrics?.sheetData || parsedMetrics.sheetData.length === 0) {
-      alert("No data available! Please upload an Excel sheet in the Ingestion tab first.");
+    if (!data.length) {
+      alert("No data available! Please upload an Excel sheet first.");
       return;
     }
-
-    const data = parsedMetrics.sheetData;
     const groupMap: Record<string, { total: number, count: number, max: number }> = {};
-
-    // 1. Parse and Group the Data
     data.forEach((row: any) => {
       const groupVal = row[queryGroup] || "Unknown";
-      let targetVal = 0;
-
-      // Handle strings (like counting patients) vs numbers (like summing revenue)
-      if (queryMetric === "Count" || queryTarget === "Patient_ID" || queryTarget === "Consultation_Date") {
-        targetVal = 1; 
-      } else {
-        targetVal = Number(row[queryTarget]) || 0;
-      }
-
-      if (!groupMap[groupVal]) {
-        groupMap[groupVal] = { total: 0, count: 0, max: -Infinity };
-      }
-
+      let targetVal = (queryMetric === "Count" || queryTarget === "Patient_ID") ? 1 : (Number(row[queryTarget]) || 0);
+      if (!groupMap[groupVal]) groupMap[groupVal] = { total: 0, count: 0, max: -Infinity };
       groupMap[groupVal].total += targetVal;
       groupMap[groupVal].count += 1;
-      if (targetVal > groupMap[groupVal].max) {
-        groupMap[groupVal].max = targetVal;
-      }
+      if (targetVal > groupMap[groupVal].max) groupMap[groupVal].max = targetVal;
     });
 
-    // 2. Apply the chosen Math operation
     const formattedData = Object.keys(groupMap).map(key => {
-      let finalValue = 0;
-      
-      if (queryMetric === "Count") {
-        finalValue = groupMap[key].count;
-      } else if (queryMetric === "Sum") {
-        finalValue = groupMap[key].total;
-      } else if (queryMetric === "Average") {
-        finalValue = groupMap[key].total / groupMap[key].count;
-      } else if (queryMetric === "Max") {
-        finalValue = groupMap[key].max === -Infinity ? 0 : groupMap[key].max;
-      }
-
-      return {
-        name: key,
-        value: Number(finalValue.toFixed(2)) // Keep decimals clean
-      };
-    });
-
-    // 3. Sort highest to lowest and save to state
-    formattedData.sort((a, b) => b.value - a.value);
+      let finalValue = queryMetric === "Count" ? groupMap[key].count 
+                     : queryMetric === "Sum" ? groupMap[key].total 
+                     : queryMetric === "Average" ? groupMap[key].total / groupMap[key].count 
+                     : groupMap[key].max === -Infinity ? 0 : groupMap[key].max;
+      return { name: key, value: Number(finalValue.toFixed(2)) };
+    }).sort((a, b) => b.value - a.value);
+    
     setCustomChartData(formattedData);
   };
 
@@ -101,7 +164,6 @@ export default function KPIDashboard() {
     <div className="flex flex-1 min-h-screen bg-[#09090b] text-[#fafafa] relative overflow-hidden font-sans">
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
-      
       <Sidebar />
 
       <main className="flex-1 flex flex-col min-w-0 overflow-y-auto relative">
@@ -109,7 +171,6 @@ export default function KPIDashboard() {
 
         <div className="flex-1 pb-12">
           <div className="p-6 sm:p-8 space-y-8">
-            
             <div className="mb-2">
               <h2 className="text-2xl font-heading font-bold text-white tracking-tight">Performance KPIs</h2>
               <p className="text-sm text-zinc-400 mt-1">Granular operational metrics and bottleneck analysis.</p>
@@ -118,13 +179,12 @@ export default function KPIDashboard() {
             <div className="flex overflow-x-auto hide-scrollbar space-x-2 border-b border-zinc-800/80 pb-4">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
-                      isActive ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30" : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 border border-transparent"
+                      activeTab === tab.id ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30" : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900 border border-transparent"
                     }`}
                   >
                     <Icon size={16} />
@@ -139,44 +199,36 @@ export default function KPIDashboard() {
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                   <MetricCard
-                    title="Daily OPD Walk-ins"
-                    value="164"
-                    subtext="Average consultations per day"
-                    trend={{ value: "+5.4%", isPositive: true }}
+                    title="Total OPD Walk-ins"
+                    value={data.length ? stats.opdWalkIns : "--"}
+                    subtext="Consultations processed"
                     icon={Users}
                     themeColor="blue"
-                    sparklineData={[140, 145, 150, 160, 164]}
-                    tooltip="Total number of unique out-patient registrations recorded for the current operational day."
+                    tooltip="Total out-patient registrations recorded in the uploaded dataset."
+                  />
+                  <MetricCard
+                    title="Average Wait Time"
+                    value={data.length ? `${stats.avgWaitTime} Mins` : "--"}
+                    subtext="Arrival to doctor consultation"
+                    icon={Clock}
+                    themeColor="amber"
+                    tooltip="Average minutes patients wait before being seen by the physician."
                   />
                   <MetricCard
                     title="OPD to IPD Conversion"
-                    value="12.8%"
-                    subtext="Consultations turning to admissions"
-                    trend={{ value: "+1.2%", isPositive: true }}
+                    value={data.length ? `${stats.opdConversion}%` : "--"}
+                    subtext="Walk-ins turning to admissions"
                     icon={Activity}
                     themeColor="emerald"
-                    sparklineData={[10.5, 11.2, 12.0, 12.5, 12.8]}
-                    tooltip="Percentage of OPD patients who are subsequently admitted as IPD patients within a 48-hour window."
+                    tooltip="Percentage of OPD patients directly routed to inpatient admissions."
                   />
                   <MetricCard
                     title="Highest Footfall Dept"
-                    value="Orthopedics"
-                    subtext="34% of total daily volume"
-                    trend={{ value: "Leading", isPositive: true }}
+                    value={data.length ? stats.topDept : "--"}
+                    subtext="Leading clinical department"
                     icon={Building}
                     themeColor="purple"
-                    sparklineData={[30, 31, 32, 33, 34]}
-                    tooltip="The specific clinical department recording the highest volume of out-patient visits."
-                  />
-                  <MetricCard
-                    title="Queue Drop-off Rate"
-                    value="2.4%"
-                    subtext="Patients leaving before consult"
-                    trend={{ value: "-0.5%", isPositive: true }}
-                    icon={UserMinus}
-                    themeColor="amber"
-                    sparklineData={[3.5, 3.2, 3.0, 2.8, 2.4]}
-                    tooltip="Percentage of registered patients who cancel or leave the premises before seeing the consultant."
+                    tooltip="Department registering the maximum patient volume."
                   />
                 </div>
               </div>
@@ -187,44 +239,36 @@ export default function KPIDashboard() {
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                   <MetricCard
-                    title="Bed Occupancy Rate (BOR)"
-                    value="82.4%"
-                    subtext="Total available IPD beds filled"
-                    trend={{ value: "+4.1%", isPositive: true }}
-                    icon={Bed}
-                    themeColor="emerald"
-                    sparklineData={[75, 78, 80, 81, 82.4]}
-                    tooltip="The real-time ratio of occupied patient beds against the total available beds across all active hospital wards."
-                  />
-                  <MetricCard
                     title="Average Length of Stay"
-                    value="3.2 Days"
+                    value={data.length ? `${stats.alos} Days` : "--"}
                     subtext="Time from admission to discharge"
-                    trend={{ value: "-0.4", isPositive: true }}
-                    icon={Clock}
+                    icon={Bed}
                     themeColor="blue"
-                    sparklineData={[4.0, 3.8, 3.6, 3.4, 3.2]}
-                    tooltip="The average number of calendar days an IPD patient occupies a bed from admission to formal discharge."
+                    tooltip="The average number of days an IPD patient occupies a bed."
                   />
                   <MetricCard
                     title="Discharge Turnaround"
-                    value="2.5 Hrs"
-                    subtext="Time to clean and flip a room"
-                    trend={{ value: "+0.5", isPositive: false }}
+                    value={data.length ? `${stats.avgDischargeTat} Mins` : "--"}
+                    subtext="Order written to room cleared"
                     icon={RotateCw}
                     themeColor="amber"
-                    sparklineData={[1.5, 1.8, 2.0, 2.2, 2.5]}
-                    tooltip="Average hours elapsed between a patient signing discharge papers and the room being sanitized for the next patient."
+                    tooltip="Average operational delay in flipping a room for the next patient."
                   />
                   <MetricCard
                     title="Surgery Success Rate"
-                    value="99.2%"
-                    subtext="Zero complication procedures"
-                    trend={{ value: "Stable", isPositive: true }}
+                    value={data.length ? `${stats.surgerySuccess}%` : "--"}
+                    subtext="Complication-free procedures"
                     icon={CheckCircle}
                     themeColor="emerald"
-                    sparklineData={[99.0, 99.1, 99.2, 99.1, 99.2]}
-                    tooltip="Percentage of major surgical procedures completed without any recorded post-operative complications within 30 days."
+                    tooltip="Percentage of recorded procedures executed successfully."
+                  />
+                  <MetricCard
+                    title="Est. Bed Occupancy (BOR)"
+                    value={data.length ? "Dynamic" : "--"}
+                    subtext="Requires capacity limits setup"
+                    icon={Building}
+                    themeColor="purple"
+                    tooltip="Requires static bed capacity integer to calculate real-time occupancy percentage."
                   />
                 </div>
               </div>
@@ -235,44 +279,36 @@ export default function KPIDashboard() {
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                   <MetricCard
+                    title="Cash Transactions"
+                    value={data.length ? `₹${(stats.cashVsCredit.cash / 1000).toFixed(1)}k` : "--"}
+                    subtext="Direct out-of-pocket payments"
+                    icon={Wallet}
+                    themeColor="emerald"
+                    tooltip="Total gross billing classified strictly under immediate Cash Payment Type."
+                  />
+                  <MetricCard
+                    title="Udhari / TPA Credit"
+                    value={data.length ? `₹${(stats.cashVsCredit.credit / 1000).toFixed(1)}k` : "--"}
+                    subtext="Pending insurance & credit"
+                    icon={CreditCard}
+                    themeColor="amber"
+                    tooltip="Total billing stuck in working capital loops (Insurance TPA or direct credit line)."
+                  />
+                  <MetricCard
                     title="Pharmacy Attachment"
-                    value="68.5%"
-                    subtext="OPD scripts filled in-house"
-                    trend={{ value: "+12%", isPositive: true }}
+                    value={data.length ? `${stats.pharmacyAttachment}%` : "--"}
+                    subtext="Internal prescription fills"
                     icon={Pill}
                     themeColor="purple"
-                    sparklineData={[50, 55, 60, 65, 68.5]}
-                    tooltip="Percentage of out-patients who fulfill their medical prescriptions at the internal hospital pharmacy."
+                    tooltip="Percentage of patients converting into pharmacy revenue. Reverses leakage."
                   />
                   <MetricCard
                     title="Diagnostic Conversion"
-                    value="74.2%"
-                    subtext="Lab tests done in-house"
-                    trend={{ value: "+8%", isPositive: true }}
+                    value={data.length ? `${stats.labAttachment}%` : "--"}
+                    subtext="In-house lab tests"
                     icon={Microscope}
                     themeColor="blue"
-                    sparklineData={[60, 65, 70, 72, 74.2]}
-                    tooltip="Percentage of prescribed pathology or radiology tests actually conducted at the internal hospital laboratory."
-                  />
-                  <MetricCard
-                    title="Top Revenue Dept"
-                    value="Cardiology"
-                    subtext="₹12.4M Generated MTD"
-                    trend={{ value: "Leading", isPositive: true }}
-                    icon={IndianRupee}
-                    themeColor="emerald"
-                    sparklineData={[10, 11, 11.5, 12, 12.4]}
-                    tooltip="The specific clinical department generating the highest total gross billing for the current month."
-                  />
-                  <MetricCard
-                    title="Cost of Acquisition (CAC)"
-                    value="₹1,240"
-                    subtext="Marketing spend per IPD patient"
-                    trend={{ value: "-₹120", isPositive: true }}
-                    icon={Target}
-                    themeColor="amber"
-                    sparklineData={[1500, 1450, 1380, 1300, 1240]}
-                    tooltip="Total marketing and promotional expenditure divided by the number of successfully admitted IPD patients."
+                    tooltip="Percentage of patients utilizing internal pathology or radiology."
                   />
                 </div>
               </div>
@@ -283,44 +319,36 @@ export default function KPIDashboard() {
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                   <MetricCard
-                    title="Top Partner Network"
-                    value="AarogyaOne"
-                    subtext="Highest IPD referral volume"
-                    trend={{ value: "+22%", isPositive: true }}
-                    icon={Trophy}
-                    themeColor="blue"
-                    sparklineData={[10, 15, 20, 25, 30]}
-                    tooltip="The external aggregator, B2B partner, or insurance network generating the highest volume of patient referrals."
-                  />
-                  <MetricCard
-                    title="Active PROs"
-                    value="14"
-                    subtext="On-field patient coordinators"
-                    trend={{ value: "+2", isPositive: true }}
-                    icon={UserPlus}
+                    title="Top Doctor (Revenue)"
+                    value={data.length ? stats.topDocRev.name : "--"}
+                    subtext={data.length ? `₹${(stats.topDocRev.val / 1000).toFixed(1)}k Generated` : "Highest grossing physician"}
+                    icon={IndianRupee}
                     themeColor="emerald"
-                    sparklineData={[10, 12, 12, 13, 14]}
-                    tooltip="Total number of Patient Relation Officers (PROs) actively logging referrals in the current billing cycle."
+                    tooltip="The attending physician holding the highest cumulative billing."
                   />
                   <MetricCard
                     title="Top Doctor (Volume)"
-                    value="Dr. Sharma"
-                    subtext="452 Consultations MTD"
-                    trend={{ value: "Leading", isPositive: true }}
+                    value={data.length ? stats.topDocVol.name : "--"}
+                    subtext={data.length ? `${stats.topDocVol.val} Consults Processed` : "Highest footfall physician"}
                     icon={Stethoscope}
                     themeColor="purple"
-                    sparklineData={[300, 350, 400, 420, 452]}
-                    tooltip="The attending physician who has successfully completed the highest number of patient consultations this month."
+                    tooltip="Physician handling the largest bulk of patient consultations."
                   />
                   <MetricCard
-                    title="Top Doctor (Revenue)"
-                    value="Dr. Mehta"
-                    subtext="₹4.2M Billed MTD"
-                    trend={{ value: "Leading", isPositive: true }}
-                    icon={IndianRupee}
-                    themeColor="emerald"
-                    sparklineData={[3.0, 3.5, 3.8, 4.0, 4.2]}
-                    tooltip="The attending physician whose combined treatments and surgeries have generated the highest gross billing this month."
+                    title="Top Acquisition Channel"
+                    value={data.length ? stats.topChannel : "--"}
+                    subtext="Dominant marketing source"
+                    icon={Target}
+                    themeColor="blue"
+                    tooltip="The leading pipeline responsible for maximum patient walk-ins."
+                  />
+                  <MetricCard
+                    title="Active PRO Network"
+                    value={data.length ? stats.proCount : "--"}
+                    subtext="On-field referral coordinators"
+                    icon={UserPlus}
+                    themeColor="amber"
+                    tooltip="Total unique Patient Relation Officers logging active cases."
                   />
                 </div>
               </div>
@@ -343,81 +371,41 @@ export default function KPIDashboard() {
                   <div className="bg-zinc-950/50 p-6 rounded-xl border border-zinc-800/80 mb-8 flex flex-wrap items-center gap-3 text-lg font-medium">
                     <span className="text-zinc-400">Show me the</span>
                     
-                    <select 
-                      value={queryMetric}
-                      onChange={(e) => setQueryMetric(e.target.value)}
-                      className="bg-zinc-900 border border-zinc-700 text-emerald-400 rounded-lg px-3 py-1.5 focus:outline-none focus:border-emerald-500 cursor-pointer"
-                    >
+                    <select value={queryMetric} onChange={(e) => setQueryMetric(e.target.value)} className="bg-zinc-900 border border-zinc-700 text-emerald-400 rounded-lg px-3 py-1.5 focus:outline-none focus:border-emerald-500 cursor-pointer">
                       <option value="Sum">Sum</option>
                       <option value="Average">Average</option>
                       <option value="Count">Count</option>
                       <option value="Max">Maximum</option>
                     </select>
-
                     <span className="text-zinc-400">of</span>
-
-                    <select 
-                      value={queryTarget}
-                      onChange={(e) => setQueryTarget(e.target.value)}
-                      className="bg-zinc-900 border border-zinc-700 text-blue-400 rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500 cursor-pointer"
-                    >
-                      <option value="Billing_Amount_INR">Billing Revenue (₹)</option>
+                    <select value={queryTarget} onChange={(e) => setQueryTarget(e.target.value)} className="bg-zinc-900 border border-zinc-700 text-blue-400 rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500 cursor-pointer">
+                      <option value="Procedure_Revenue">Procedure Revenue (₹)</option>
+                      <option value="Pharmacy_Revenue">Pharmacy Revenue (₹)</option>
                       <option value="Patient_ID">Total Patients</option>
-                      <option value="Consultation_Date">Visits</option>
+                      <option value="Length_Of_Stay_Days">Length of Stay (Days)</option>
                     </select>
-
                     <span className="text-zinc-400">grouped by</span>
-
-                    <select 
-                      value={queryGroup}
-                      onChange={(e) => setQueryGroup(e.target.value)}
-                      className="bg-zinc-900 border border-zinc-700 text-purple-400 rounded-lg px-3 py-1.5 focus:outline-none focus:border-purple-500 cursor-pointer"
-                    >
+                    <select value={queryGroup} onChange={(e) => setQueryGroup(e.target.value)} className="bg-zinc-900 border border-zinc-700 text-purple-400 rounded-lg px-3 py-1.5 focus:outline-none focus:border-purple-500 cursor-pointer">
                       <option value="Acquisition_Channel">Acquisition Channel</option>
                       <option value="Department">Clinical Department</option>
-                      <option value="Treatment_Type">Treatment Type (IPD/OPD)</option>
-                      <option value="Follow_Up_Required">Follow-Up Status</option>
+                      <option value="Doctor_ID">Attending Doctor</option>
+                      <option value="Payment_Type">Payment Mode (Cash/TPA)</option>
                     </select>
 
-                    <button 
-                      onClick={handleGenerateCustomKPI}
-                      className="ml-auto flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 px-6 py-2 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-                    >
+                    <button onClick={handleGenerateCustomKPI} className="ml-auto flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 px-6 py-2 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                       <Play fill="currentColor" size={16} />
                       Generate Metric
                     </button>
                   </div>
 
-                  {/* DYNAMIC RESULT AREA */}
                   {customChartData ? (
                     <div className="h-[300px] bg-zinc-950/30 p-6 border border-zinc-800/80 rounded-xl animate-in fade-in duration-500">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={customChartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="rgba(63, 63, 70, 0.15)" vertical={false} />
                           <XAxis dataKey="name" stroke="#71717a" fontSize={11} tickLine={false} axisLine={false} />
-                          <YAxis 
-                            stroke="#71717a" 
-                            fontSize={11} 
-                            tickLine={false} 
-                            axisLine={false}
-                            tickFormatter={(val) => queryTarget === "Billing_Amount_INR" && queryMetric !== "Count" ? `₹${(val/1000).toFixed(0)}k` : val}
-                          />
-                          <Tooltip
-  cursor={{ fill: "rgba(16, 185, 129, 0.05)" }}
-  contentStyle={{
-    backgroundColor: "#09090b",
-    border: "1px solid rgba(63, 63, 70, 0.5)",
-    borderRadius: "12px",
-    fontSize: "12px",
-    fontFamily: "var(--font-inter)",
-  }}
-  formatter={(value: any) => {
-    if (queryTarget === "Billing_Amount_INR" && queryMetric !== "Count") {
-      return [`₹${Number(value).toLocaleString("en-IN")}`, queryMetric];
-    }
-    return [value, queryMetric];
-  }}
-/>
+                          <YAxis stroke="#71717a" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => queryMetric !== "Count" ? `₹${(val/1000).toFixed(0)}k` : val} />
+                          <Tooltip cursor={{ fill: "rgba(16, 185, 129, 0.05)" }} contentStyle={{ backgroundColor: "#09090b", border: "1px solid rgba(63, 63, 70, 0.5)", borderRadius: "12px", fontSize: "12px", fontFamily: "var(--font-inter)" }} formatter={(value: any) => { if (queryMetric !== "Count") { return [`₹${Number(value).toLocaleString("en-IN")}`, queryMetric]; } return [value, queryMetric]; }} />
                           <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={60}>
                             {customChartData.map((entry, index) => (
                               <Cell key={`cell-${index}`} fill={index === 0 ? "#10b981" : index === 1 ? "#3b82f6" : "#a855f7"} />
@@ -432,11 +420,9 @@ export default function KPIDashboard() {
                       <p className="font-sans text-sm">Select your parameters and click Generate to build a custom graph.</p>
                     </div>
                   )}
-
                 </div>
               </div>
             )}
-
           </div>
         </div>
       </main>
