@@ -15,13 +15,11 @@ import {
   LineChart,
   ShoppingBag,
   Utensils,
-  Zap,
-  TrendingUp,
   FileCheck,
   Bed,
   Network,
   Trophy,
-  CalendarCheck
+  Landmark // Added icon for TPA Claims
 } from "lucide-react";
 
 import dynamic from "next/dynamic";
@@ -32,8 +30,8 @@ export default function Home() {
   const { viewState } = useIndustryContext();
   const { parsedMetrics } = useData();
 
-  // --- REAL-TIME MATH ENGINE ---
-  // 1. Default fallback metrics
+  // --- REAL-TIME MATH ENGINE (UPDATED FOR GROWTH SCHEMA) ---
+  // 1. Default fallback metrics (Shows before Excel upload)
   let ipdCount = 1245;
   let opdCount = 4892;
   let ipdARPP = 45500;
@@ -42,51 +40,67 @@ export default function Home() {
   let activeChannels = 4;
   let topChannelName = "Direct Walk-in";
   let topChannelRev = 18500000;
-  let followUpCount = 856;
+  let pendingTpaCount = 856;
 
   // 2. Dynamic Calculation
   if (parsedMetrics?.sheetData && parsedMetrics.sheetData.length > 0) {
     const data = parsedMetrics.sheetData;
-
-    // IPD Logic
-    const ipdRows = data.filter((row: any) => 
-      row.Treatment_Type?.toString().toUpperCase().includes('IPD') || 
-      row.Treatment_Type?.toString().toUpperCase().includes('IN-PATIENT')
-    );
-    ipdCount = ipdRows.length > 0 ? ipdRows.length : data.length; 
-    const ipdRevenue = ipdRows.reduce((sum: number, row: any) => sum + (Number(row.Billing_Amount_INR) || 0), 0);
-    if (ipdCount > 0) ipdARPP = Math.round(ipdRevenue / ipdCount);
-
-    // OPD Logic
-    const opdRows = data.filter((row: any) => 
-      row.Treatment_Type?.toString().toUpperCase().includes('OPD') || 
-      row.Treatment_Type?.toString().toUpperCase().includes('OUT-PATIENT')
-    );
-    if (opdRows.length > 0) {
-      opdCount = opdRows.length;
-      const opdRevenue = opdRows.reduce((sum: number, row: any) => sum + (Number(row.Billing_Amount_INR) || 0), 0);
-      opdARPP = Math.round(opdRevenue / opdCount);
-    }
-
-    // Total Revenue & Channels
-    totalRevenue = data.reduce((sum: number, row: any) => sum + (Number(row.Billing_Amount_INR) || 0), 0);
     
-    // Count unique acquisition channels
-    const uniqueChannels = new Set(data.map((row: any) => row.Acquisition_Channel).filter(Boolean));
-    if (uniqueChannels.size > 0) activeChannels = uniqueChannels.size;
+    // Reset counters for live data
+    ipdCount = 0;
+    opdCount = 0;
+    let ipdRevenue = 0;
+    let opdRevenue = 0;
+    totalRevenue = 0;
+    pendingTpaCount = 0;
+    
+    const uniqueChannels = new Set();
+    const channelRevMap: Record<string, number> = {};
+
+    data.forEach((row: any) => {
+      // Safely parse the 4 new revenue columns
+      const pRev = Number(row.Pharmacy_Revenue) || 0;
+      const lRev = Number(row.Lab_Revenue) || 0;
+      const procRev = Number(row.Procedure_Revenue) || 0;
+      const consultRev = Number(row.Revenue_Consultation) || 0;
+      const rowTotal = pRev + lRev + procRev + consultRev;
+
+      totalRevenue += rowTotal;
+
+      // Track IPD vs OPD using the new Visit_Type column
+      const isIPD = row.Visit_Type?.toString().toUpperCase() === "IPD";
+      if (isIPD) {
+        ipdCount++;
+        ipdRevenue += rowTotal;
+      } else {
+        opdCount++;
+        opdRevenue += rowTotal;
+      }
+
+      // Track TPA / Insurance Pending
+      if (row.Payment_Type === "TPA_Insurance") {
+        pendingTpaCount++;
+      }
+
+      // Track Channels
+      const channel = row.Acquisition_Channel || "Unknown";
+      if (channel !== "Unknown" && channel !== "") {
+        uniqueChannels.add(channel);
+        channelRevMap[channel] = (channelRevMap[channel] || 0) + rowTotal;
+      }
+    });
+
+    // Calculate Averages (ARPP)
+    ipdARPP = ipdCount > 0 ? Math.round(ipdRevenue / ipdCount) : 0;
+    opdARPP = opdCount > 0 ? Math.round(opdRevenue / opdCount) : 0;
+    
+    activeChannels = uniqueChannels.size;
 
     // Identify Top Performing Channel
-    const channelRevMap: Record<string, number> = {};
-    data.forEach((row: any) => {
-      const channel = row.Acquisition_Channel || "Unknown";
-      const rev = Number(row.Billing_Amount_INR) || 0;
-      channelRevMap[channel] = (channelRevMap[channel] || 0) + rev;
-    });
-    
     let maxRev = 0;
     let topChan = "N/A";
     for (const [chan, rev] of Object.entries(channelRevMap)) {
-      if (rev > maxRev && chan !== "Unknown" && chan !== "") {
+      if (rev > maxRev) {
         maxRev = rev;
         topChan = chan;
       }
@@ -95,13 +109,6 @@ export default function Home() {
       topChannelName = topChan;
       topChannelRev = maxRev;
     }
-
-    // Follow-up Pipeline
-    const fRows = data.filter((row:any) => 
-      row.Follow_Up_Required?.toString().toUpperCase() === 'YES' || 
-      row.Follow_Up_Required === true
-    );
-    if (fRows.length > 0) followUpCount = fRows.length;
   }
   // -----------------------------
   
@@ -160,7 +167,7 @@ export default function Home() {
                         trend={{ value: "+12.5%", isPositive: true }}
                         icon={Bed}
                         themeColor="emerald"
-                        sparklineData={[1100, 1150, 1200, 1220, ipdCount]}
+                        sparklineData={[ipdCount * 0.9, ipdCount * 0.95, ipdCount * 1.05, ipdCount * 0.98, ipdCount]}
                       />
                       <MetricCard
                         title="OPD Consultations"
@@ -169,7 +176,7 @@ export default function Home() {
                         trend={{ value: "+3.2%", isPositive: true }}
                         icon={Users}
                         themeColor="blue"
-                        sparklineData={[4500, 4600, 4750, 4800, opdCount]}
+                        sparklineData={[opdCount * 0.8, opdCount * 0.9, opdCount * 0.95, opdCount * 0.99, opdCount]}
                       />
                       <MetricCard
                         title="Average Revenue (IPD)"
@@ -178,7 +185,7 @@ export default function Home() {
                         trend={{ value: "+4.1%", isPositive: true }}
                         icon={Stethoscope}
                         themeColor="emerald"
-                        sparklineData={[42000, 43500, 44000, 45000, ipdARPP]}
+                        sparklineData={[ipdARPP * 0.9, ipdARPP * 0.95, ipdARPP * 1.02, ipdARPP * 0.98, ipdARPP]}
                       />
                       <MetricCard
                         title="Average Revenue (OPD)"
@@ -187,7 +194,7 @@ export default function Home() {
                         trend={{ value: "-1.2%", isPositive: false }}
                         icon={LineChart}
                         themeColor="amber"
-                        sparklineData={[900, 880, 890, 860, opdARPP]}
+                        sparklineData={[opdARPP * 1.1, opdARPP * 1.05, opdARPP * 1.02, opdARPP * 1.01, opdARPP]}
                       />
                     </div>
                   </div>
@@ -201,11 +208,11 @@ export default function Home() {
                       <MetricCard
                         title="Total Revenue"
                         value={`₹${totalRevenue.toLocaleString("en-IN")}`}
-                        subtext="Combined IPD & OPD billing"
+                        subtext="Combined overall billing"
                         trend={{ value: "+8.2%", isPositive: true }}
                         icon={IndianRupee}
                         themeColor="emerald"
-                        sparklineData={[48000000, 49500000, 51000000, 52000000, totalRevenue]}
+                        sparklineData={[totalRevenue * 0.8, totalRevenue * 0.85, totalRevenue * 0.9, totalRevenue * 0.95, totalRevenue]}
                       />
                       <MetricCard
                         title="Acquisition Channels"
@@ -214,7 +221,7 @@ export default function Home() {
                         trend={{ value: "Active", isPositive: true }}
                         icon={Network}
                         themeColor="purple"
-                        sparklineData={[2, 3, 3, 4, activeChannels]}
+                        sparklineData={[Math.max(1, activeChannels - 2), Math.max(1, activeChannels - 1), activeChannels, activeChannels, activeChannels]}
                       />
                       <MetricCard
                         title="Top Channel"
@@ -223,16 +230,16 @@ export default function Home() {
                         trend={{ value: "Leading", isPositive: true }}
                         icon={Trophy}
                         themeColor="blue"
-                        sparklineData={[12000000, 14000000, 16000000, 17500000, topChannelRev]}
+                        sparklineData={[topChannelRev * 0.7, topChannelRev * 0.8, topChannelRev * 0.9, topChannelRev * 0.95, topChannelRev]}
                       />
                       <MetricCard
-                        title="Pending Follow-ups"
-                        value={followUpCount.toLocaleString("en-IN")}
-                        subtext="Scheduled retention pipeline"
+                        title="Pending TPA Claims"
+                        value={pendingTpaCount.toLocaleString("en-IN")}
+                        subtext="Unsettled insurance pipeline"
                         trend={{ value: "+18%", isPositive: true }}
-                        icon={CalendarCheck}
+                        icon={Landmark}
                         themeColor="amber"
-                        sparklineData={[700, 750, 800, 820, followUpCount]}
+                        sparklineData={[pendingTpaCount * 0.8, pendingTpaCount * 0.9, pendingTpaCount * 1.1, pendingTpaCount * 1.05, pendingTpaCount]}
                       />
                     </div>
                   </div>

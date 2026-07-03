@@ -1,101 +1,151 @@
-Patient_ID,Consultation_Date,Treatment_Type,Department,Billing_Amount_INR,Acquisition_Channel,Follow_Up_Required
-PT-1001,2026-02-12,OPD,General Medicine,1710,AarogyaOne,Yes
-PT-1002,2026-01-22,OPD,General Medicine,3456,Corporate Insurance,Yes
-PT-1003,2026-03-02,IPD,Cardiology/Oncology,172638,Direct Walk-in,No
-PT-1004,2026-03-11,IPD,Cardiology/Oncology,74553,Google Search,Yes
-PT-1005,2026-04-23,OPD,General Medicine,2058,Google Search,No
-PT-1006,2026-01-20,OPD,General Medicine,2919,AarogyaOne,Yes
-PT-1007,2026-02-07,OPD,General Medicine,3036,AarogyaOne,Yes
-PT-1008,2026-01-03,IPD,Cardiology/Oncology,180280,AarogyaOne,No
-PT-1009,2026-02-14,OPD,General Medicine,3217,Corporate Insurance,No
-PT-1010,2026-01-05,OPD,General Medicine,3178,Meta Ads,Yes
-PT-1011,2026-03-25,OPD,General Medicine,2689,AarogyaOne,No
-PT-1012,2026-05-16,OPD,General Medicine,2187,AarogyaOne,Yes
-PT-1013,2026-04-21,IPD,Cardiology/Oncology,160656,Corporate Insurance,No
-PT-1014,2026-01-26,OPD,General Medicine,3250,AarogyaOne,Yes
-PT-1015,2026-02-06,IPD,Cardiology/Oncology,75101,Direct Walk-in,Yes
-PT-1016,2026-01-20,OPD,General Medicine,1765,AarogyaOne,Yes
-PT-1017,2026-03-22,IPD,Cardiology/Oncology,215014,Meta Ads,No
-PT-1018,2026-04-09,OPD,General Medicine,1602,AarogyaOne,Yes
-PT-1019,2026-01-14,OPD,General Medicine,2167,Meta Ads,Yes
-PT-1020,2026-04-17,OPD,General Medicine,3027,AarogyaOne,Yes
-PT-1021,2026-02-14,OPD,General Medicine,2965,AarogyaOne,No
-PT-1022,2026-05-05,OPD,General Medicine,2600,AarogyaOne,Yes
-PT-1023,2026-04-01,OPD,General Medicine,1322,Direct Walk-in,Yes
-PT-1024,2026-03-22,IPD,Cardiology/Oncology,209588,Google Search,Yes
-PT-1025,2026-05-15,OPD,General Medicine,2667,Meta Ads,No
-PT-1026,2026-04-27,OPD,General Medicine,2627,Corporate Insurance,No
-PT-1027,2026-01-14,IPD,Cardiology/Oncology,219355,Direct Walk-in,Yes
-PT-1028,2026-02-17,IPD,Cardiology/Oncology,238291,Direct Walk-in,No
-PT-1029,2026-05-28,IPD,Cardiology/Oncology,120797,Meta Ads,Yes
-PT-1030,2026-05-12,IPD,Cardiology/Oncology,100393,Direct Walk-in,No
-PT-1031,2026-03-09,OPD,General Medicine,2871,Google Search,Yes
-PT-1032,2026-02-27,IPD,Cardiology/Oncology,192995,AarogyaOne,Yes
-PT-1033,2026-04-19,OPD,General Medicine,1222,Google Search,No
-PT-1034,2026-03-15,OPD,General Medicine,1566,Meta Ads,Yes
-PT-1035,2026-05-23,IPD,Cardiology/Oncology,223258,AarogyaOne,Yes
-PT-1036,2026-04-16,IPD,Cardiology/Oncology,157498,AarogyaOne,Yes
-PT-1037,2026-03-15,OPD,General Medicine,2015,Meta Ads,No
-PT-1038,2026-02-24,IPD,Cardiology/Oncology,218000,Google Search,Yes
-PT-1039,2026-02-02,IPD,Cardiology/Oncology,98135,Meta Ads,Yes
-PT-1040,2026-02-04,IPD,Cardiology/Oncology,107269,Google Search,No
-PT-1041,2026-05-09,OPD,General Medicine,3023,Meta Ads,Yes
-PT-1042,2026-01-15,IPD,Cardiology/Oncology,65746,AarogyaOne,No
-PT-1043,2026-04-08,IPD,Cardiology/Oncology,183837,AarogyaOne,No
-PT-1044,2026-04-15,OPD,General Medicine,1737,Meta Ads,No
-PT-1045,2026-05-17,OPD,General Medicine,2204,Google Search,No
-PT-1046,2026-05-24,IPD,Cardiology/Oncology,225661,Google Search,Yes
-PT-1047,2026-04-11,OPD,General Medicine,2141,Meta Ads,No
-PT-1048,2026-05-25,IPD,Cardiology/Oncology,76202,Corporate Insurance,No
-PT-1049,2026-04-25,OPD,General Medicine,3204,Direct Walk-in,Yes
-PT-1050,2026-01-05,OPD,General Medicine,2227,AarogyaOne,No
-PT-1051,2026-05-16,OPD,General Medicine,2204,AarogyaOne,No
-PT-1052,2026-05-18,OPD,General Medicine,2509,Corporate Insurance,No
-PT-1053,2026-05-06,OPD,General Medicine,3138,Meta Ads,Yes
-PT-1054,2026-01-19,IPD,Cardiology/Oncology,145634,Corporate Insurance,No
-PT-1055,2026-04-04,OPD,General Medicine,3402,Direct Walk-in,Yes
-PT-1056,2026-04-22,OPD,General Medicine,1350,Meta Ads,Yes
-PT-1057,2026-04-03,OPD,General Medicine,2251,AarogyaOne,Yes
-PT-1058,2026-04-06,IPD,Cardiology/Oncology,66236,AarogyaOne,Yes
-PT-1059,2026-05-12,IPD,Cardiology/Oncology,91345,Meta Ads,No
-PT-1060,2026-01-10,IPD,Cardiology/Oncology,144480,AarogyaOne,Yes
-PT-1061,2026-03-04,OPD,General Medicine,3350,Google Search,Yes
-PT-1062,2026-05-26,OPD,General Medicine,1388,Google Search,No
-PT-1063,2026-04-07,OPD,General Medicine,1592,AarogyaOne,Yes
-PT-1064,2026-04-21,IPD,Cardiology/Oncology,198719,Meta Ads,Yes
-PT-1065,2026-05-04,IPD,Cardiology/Oncology,138846,Google Search,Yes
-PT-1066,2026-05-14,OPD,General Medicine,2847,AarogyaOne,No
-PT-1067,2026-03-12,OPD,General Medicine,1763,Google Search,Yes
-PT-1068,2026-01-08,IPD,Cardiology/Oncology,123571,Corporate Insurance,Yes
-PT-1069,2026-01-04,IPD,Cardiology/Oncology,129331,Direct Walk-in,Yes
-PT-1070,2026-04-27,OPD,General Medicine,2918,AarogyaOne,No
-PT-1071,2026-05-19,IPD,Cardiology/Oncology,196407,Google Search,Yes
-PT-1072,2026-05-05,IPD,Cardiology/Oncology,202782,AarogyaOne,Yes
-PT-1073,2026-05-25,OPD,General Medicine,3357,Corporate Insurance,No
-PT-1074,2026-03-08,OPD,General Medicine,3454,Direct Walk-in,Yes
-PT-1075,2026-02-12,IPD,Cardiology/Oncology,109977,Direct Walk-in,Yes
-PT-1076,2026-02-08,OPD,General Medicine,3283,Corporate Insurance,Yes
-PT-1077,2026-02-17,IPD,Cardiology/Oncology,144158,AarogyaOne,Yes
-PT-1078,2026-04-24,OPD,General Medicine,1244,Direct Walk-in,No
-PT-1079,2026-04-18,OPD,General Medicine,3443,AarogyaOne,No
-PT-1080,2026-03-07,OPD,General Medicine,2171,AarogyaOne,Yes
-PT-1081,2026-04-05,OPD,General Medicine,1804,AarogyaOne,Yes
-PT-1082,2026-02-27,IPD,Cardiology/Oncology,65643,Direct Walk-in,Yes
-PT-1083,2026-01-26,IPD,Cardiology/Oncology,75783,Direct Walk-in,No
-PT-1084,2026-03-09,OPD,General Medicine,1638,AarogyaOne,Yes
-PT-1085,2026-03-14,OPD,General Medicine,2696,Direct Walk-in,Yes
-PT-1086,2026-05-07,OPD,General Medicine,3145,AarogyaOne,Yes
-PT-1087,2026-02-03,OPD,General Medicine,2154,Direct Walk-in,Yes
-PT-1088,2026-03-03,IPD,Cardiology/Oncology,197610,Google Search,Yes
-PT-1089,2026-01-10,IPD,Cardiology/Oncology,86630,AarogyaOne,No
-PT-1090,2026-05-19,IPD,Cardiology/Oncology,137548,AarogyaOne,Yes
-PT-1091,2026-03-26,OPD,General Medicine,1349,Meta Ads,No
-PT-1092,2026-04-20,OPD,General Medicine,2849,Google Search,Yes
-PT-1093,2026-02-16,OPD,General Medicine,2063,AarogyaOne,No
-PT-1094,2026-01-04,OPD,General Medicine,1987,AarogyaOne,Yes
-PT-1095,2026-04-21,IPD,Cardiology/Oncology,242806,Direct Walk-in,No
-PT-1096,2026-03-23,IPD,Cardiology/Oncology,210855,Corporate Insurance,Yes
-PT-1097,2026-05-02,IPD,Cardiology/Oncology,147484,AarogyaOne,Yes
-PT-1098,2026-05-25,OPD,General Medicine,1549,Meta Ads,Yes
-PT-1099,2026-02-04,OPD,General Medicine,2908,Meta Ads,No
-PT-1100,2026-04-28,IPD,Cardiology/Oncology,86199,AarogyaOne,No
+Patient_ID,Date,Doctor_ID,Department,Visit_Type,Ward_Category,Acquisition_Channel,PRO_ID,OPD_Wait_Time_Mins,Converted_To_IPD,Length_Of_Stay_Days,Discharge_TAT_Mins,Surgery_Success,Payment_Type,TPA_Settlement_Days,Pharmacy_Revenue,Pharmacy_Prescription_Filled,Lab_Revenue,Diagnostic_Ordered,Procedure_Revenue,Revenue_Consultation
+PT-1001,2026-02-26,DR_SHARMA,General Medicine,OPD,N/A,Google Ads,,38,No,0,0,N/A,TPA_Insurance,28,1292,Yes,5268,Yes,0,1279
+PT-1002,2026-03-17,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,11,No,0,0,N/A,Cash,0,0,No,0,No,0,1221
+PT-1003,2026-04-15,DR_IYER,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,32,Yes,0,0,N/A,TPA_Insurance,33,2947,Yes,0,No,0,779
+PT-1004,2026-05-21,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,47,No,0,0,N/A,TPA_Insurance,37,2248,Yes,2122,Yes,0,1477
+PT-1005,2026-01-05,DR_MEHTA,Cardiology,IPD,ICU,Corporate Tie-up,PRO_RAHUL,0,No,5.1,47,Yes,Cash,0,1731,Yes,2393,Yes,91171,0
+PT-1006,2026-04-22,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,15,Yes,0,0,N/A,TPA_Insurance,34,1320,Yes,0,No,0,649
+PT-1007,2026-05-10,DR_IYER,Cardiology,IPD,ICU,AarogyaOne,PRO_RAHUL,0,No,5.1,131,Yes,TPA_Insurance,32,2670,Yes,4253,Yes,189288,0
+PT-1008,2026-03-05,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,25,No,0,0,N/A,TPA_Insurance,26,0,No,0,No,0,789
+PT-1009,2026-04-05,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_RAHUL,12,No,0,0,N/A,Cash,0,1993,Yes,0,No,0,914
+PT-1010,2026-04-17,DR_MEHTA,Cardiology,IPD,Private,AarogyaOne,PRO_RAHUL,0,No,3.5,137,Yes,TPA_Insurance,25,0,No,2439,Yes,60225,0
+PT-1011,2026-04-13,DR_IYER,Cardiology,IPD,Semi-Private,AarogyaOne,PRO_SNEHA,0,No,3.1,123,Yes,Cash,0,1912,Yes,2467,Yes,261065,0
+PT-1012,2026-02-24,DR_IYER,General Medicine,OPD,N/A,Google Ads,,26,No,0,0,N/A,TPA_Insurance,31,0,No,1400,Yes,0,1010
+PT-1013,2026-03-02,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,,51,No,0,0,N/A,TPA_Insurance,31,0,No,5005,Yes,0,868
+PT-1014,2026-01-14,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,40,Yes,0,0,N/A,TPA_Insurance,59,1642,Yes,5025,Yes,0,578
+PT-1015,2026-02-05,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,19,No,0,0,N/A,TPA_Insurance,68,0,No,0,No,0,678
+PT-1016,2026-02-07,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,13,No,0,0,N/A,Cash,0,2814,Yes,3210,Yes,0,1383
+PT-1017,2026-05-28,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,47,No,0,0,N/A,Cash,0,295,Yes,5968,Yes,0,1190
+PT-1018,2026-01-04,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,,11,No,0,0,N/A,Cash,0,1964,Yes,0,No,0,1491
+PT-1019,2026-03-15,DR_SHARMA,Cardiology,IPD,Semi-Private,AarogyaOne,PRO_SNEHA,0,No,4.5,92,Yes,Cash,0,520,Yes,1831,Yes,379358,0
+PT-1020,2026-05-23,DR_MEHTA,Cardiology,IPD,ICU,Google Ads,,0,No,3.1,65,Yes,TPA_Insurance,15,0,No,3718,Yes,262995,0
+PT-1021,2026-02-08,DR_SHARMA,Cardiology,IPD,Private,AarogyaOne,,0,No,4.3,59,Yes,Cash,0,2157,Yes,3213,Yes,115082,0
+PT-1022,2026-03-18,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,11,No,0,0,N/A,Cash,0,1786,Yes,3977,Yes,0,1100
+PT-1023,2026-01-28,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,,47,No,0,0,N/A,TPA_Insurance,34,1076,Yes,0,No,0,1461
+PT-1024,2026-04-10,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,49,No,0,0,N/A,TPA_Insurance,61,311,Yes,0,No,0,1064
+PT-1025,2026-01-21,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,,20,No,0,0,N/A,TPA_Insurance,19,0,No,0,No,0,677
+PT-1026,2026-04-04,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,18,No,0,0,N/A,TPA_Insurance,16,913,Yes,2250,Yes,0,1344
+PT-1027,2026-04-08,DR_IYER,Cardiology,IPD,ICU,AarogyaOne,,0,No,1.9,141,Yes,TPA_Insurance,41,1810,Yes,4482,Yes,203372,0
+PT-1028,2026-02-15,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,11,No,0,0,N/A,Cash,0,425,Yes,0,No,0,971
+PT-1029,2026-02-25,DR_IYER,General Medicine,OPD,N/A,Google Ads,,13,No,0,0,N/A,Cash,0,0,No,2627,Yes,0,529
+PT-1030,2026-03-03,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,11,No,0,0,N/A,TPA_Insurance,31,1848,Yes,1138,Yes,0,745
+PT-1031,2026-04-10,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,26,No,0,0,N/A,Cash,0,722,Yes,4611,Yes,0,738
+PT-1032,2026-05-24,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,24,No,0,0,N/A,TPA_Insurance,56,965,Yes,0,No,0,558
+PT-1033,2026-03-05,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,23,No,0,0,N/A,TPA_Insurance,22,1245,Yes,5406,Yes,0,1279
+PT-1034,2026-04-10,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,10,No,0,0,N/A,Cash,0,3176,Yes,0,No,0,1348
+PT-1035,2026-05-15,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,48,No,0,0,N/A,TPA_Insurance,30,1071,Yes,4300,Yes,0,1218
+PT-1036,2026-05-24,DR_IYER,Cardiology,IPD,Private,Corporate Tie-up,,0,No,4.9,53,Yes,TPA_Insurance,25,0,No,4231,Yes,298533,0
+PT-1037,2026-01-02,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,36,No,0,0,N/A,TPA_Insurance,31,1431,Yes,3428,Yes,0,962
+PT-1038,2026-02-02,DR_IYER,Cardiology,IPD,Semi-Private,AarogyaOne,,0,No,2.6,119,Yes,TPA_Insurance,57,0,No,0,No,75362,0
+PT-1039,2026-01-07,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,28,No,0,0,N/A,Cash,0,1212,Yes,0,No,0,1337
+PT-1040,2026-04-22,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,,35,No,0,0,N/A,TPA_Insurance,73,0,No,2020,Yes,0,766
+PT-1041,2026-02-07,DR_IYER,General Medicine,OPD,N/A,Google Ads,,28,Yes,0,0,N/A,Cash,0,243,Yes,5044,Yes,0,1444
+PT-1042,2026-05-08,DR_SHARMA,Cardiology,IPD,ICU,AarogyaOne,PRO_RAHUL,0,No,5.5,122,Yes,TPA_Insurance,35,1264,Yes,0,No,134885,0
+PT-1043,2026-05-04,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_RAHUL,27,No,0,0,N/A,TPA_Insurance,66,2369,Yes,4600,Yes,0,931
+PT-1044,2026-05-04,DR_SHARMA,General Medicine,OPD,N/A,Google Ads,,49,No,0,0,N/A,TPA_Insurance,36,0,No,4920,Yes,0,1170
+PT-1045,2026-01-12,DR_IYER,Cardiology,IPD,ICU,Google Ads,PRO_RAHUL,0,No,3.0,123,Yes,TPA_Insurance,35,0,No,3526,Yes,373316,0
+PT-1046,2026-01-06,DR_SHARMA,Cardiology,IPD,Semi-Private,Google Ads,PRO_RAHUL,0,No,2.4,68,Yes,TPA_Insurance,54,2742,Yes,0,No,196512,0
+PT-1047,2026-01-04,DR_SHARMA,Cardiology,IPD,Semi-Private,Google Ads,,0,No,3.6,46,Yes,TPA_Insurance,19,852,Yes,2615,Yes,363371,0
+PT-1048,2026-01-09,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,49,No,0,0,N/A,TPA_Insurance,47,2821,Yes,0,No,0,1016
+PT-1049,2026-03-15,DR_MEHTA,Cardiology,IPD,Private,AarogyaOne,PRO_SNEHA,0,No,2.6,117,Yes,Cash,0,0,No,2393,Yes,255692,0
+PT-1050,2026-03-22,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,,26,Yes,0,0,N/A,TPA_Insurance,50,0,No,0,No,0,1472
+PT-1051,2026-04-08,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,17,No,0,0,N/A,TPA_Insurance,28,2486,Yes,0,No,0,991
+PT-1052,2026-03-07,DR_MEHTA,Cardiology,IPD,Private,AarogyaOne,,0,No,4.8,132,Yes,TPA_Insurance,54,1909,Yes,2776,Yes,70667,0
+PT-1053,2026-01-25,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,16,No,0,0,N/A,TPA_Insurance,33,0,No,2416,Yes,0,1346
+PT-1054,2026-01-12,DR_MEHTA,Cardiology,IPD,ICU,Google Ads,PRO_RAHUL,0,No,4.4,116,Yes,TPA_Insurance,63,0,No,0,No,365697,0
+PT-1055,2026-01-17,DR_SHARMA,Cardiology,IPD,ICU,Corporate Tie-up,PRO_SNEHA,0,No,1.2,79,Yes,TPA_Insurance,40,1509,Yes,5012,Yes,324934,0
+PT-1056,2026-05-14,DR_SHARMA,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,48,No,0,0,N/A,TPA_Insurance,29,2317,Yes,1305,Yes,0,967
+PT-1057,2026-03-02,DR_SHARMA,General Medicine,OPD,N/A,Google Ads,,45,No,0,0,N/A,TPA_Insurance,69,0,No,3176,Yes,0,743
+PT-1058,2026-01-02,DR_SHARMA,Cardiology,IPD,ICU,AarogyaOne,PRO_RAHUL,0,No,2.6,52,Yes,TPA_Insurance,62,2396,Yes,3828,Yes,313165,0
+PT-1059,2026-04-03,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,,21,No,0,0,N/A,Cash,0,0,No,1165,Yes,0,845
+PT-1060,2026-01-16,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_RAHUL,38,Yes,0,0,N/A,Cash,0,0,No,5770,Yes,0,657
+PT-1061,2026-01-19,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,12,No,0,0,N/A,Cash,0,0,No,1005,Yes,0,758
+PT-1062,2026-03-27,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,,26,No,0,0,N/A,Cash,0,0,No,3591,Yes,0,1398
+PT-1063,2026-05-25,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,44,No,0,0,N/A,Cash,0,854,Yes,4463,Yes,0,766
+PT-1064,2026-01-02,DR_IYER,General Medicine,OPD,N/A,Google Ads,,36,Yes,0,0,N/A,TPA_Insurance,52,0,No,5885,Yes,0,793
+PT-1065,2026-05-11,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,10,No,0,0,N/A,Cash,0,1993,Yes,0,No,0,821
+PT-1066,2026-03-09,DR_MEHTA,Cardiology,IPD,Private,AarogyaOne,,0,No,1.7,110,Yes,TPA_Insurance,28,1285,Yes,5722,Yes,357027,0
+PT-1067,2026-04-03,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,,21,Yes,0,0,N/A,Cash,0,1807,Yes,3486,Yes,0,1017
+PT-1068,2026-02-26,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,21,Yes,0,0,N/A,Cash,0,2309,Yes,2812,Yes,0,847
+PT-1069,2026-03-23,DR_IYER,Cardiology,IPD,Private,Google Ads,PRO_RAHUL,0,No,3.1,124,Yes,TPA_Insurance,49,994,Yes,0,No,196752,0
+PT-1070,2026-03-07,DR_IYER,Cardiology,IPD,Private,Google Ads,,0,No,5.5,80,Yes,TPA_Insurance,73,1306,Yes,2633,Yes,246552,0
+PT-1071,2026-01-05,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,37,No,0,0,N/A,Cash,0,956,Yes,4742,Yes,0,831
+PT-1072,2026-04-07,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,32,No,0,0,N/A,TPA_Insurance,65,2726,Yes,3883,Yes,0,1042
+PT-1073,2026-04-20,DR_SHARMA,Cardiology,IPD,ICU,Google Ads,,0,No,2.6,79,Yes,TPA_Insurance,62,1674,Yes,2335,Yes,216258,0
+PT-1074,2026-03-05,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,12,No,0,0,N/A,TPA_Insurance,17,0,No,5564,Yes,0,1469
+PT-1075,2026-02-11,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,,54,No,0,0,N/A,TPA_Insurance,23,1641,Yes,2590,Yes,0,923
+PT-1076,2026-05-16,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,20,No,0,0,N/A,TPA_Insurance,17,1029,Yes,3717,Yes,0,698
+PT-1077,2026-01-08,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,,46,No,0,0,N/A,Cash,0,1139,Yes,3736,Yes,0,612
+PT-1078,2026-04-11,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,34,No,0,0,N/A,TPA_Insurance,71,2279,Yes,4197,Yes,0,954
+PT-1079,2026-02-23,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,,34,No,0,0,N/A,Cash,0,620,Yes,0,No,0,860
+PT-1080,2026-02-22,DR_IYER,Cardiology,IPD,ICU,AarogyaOne,PRO_SNEHA,0,No,3.9,54,Yes,TPA_Insurance,55,1062,Yes,1239,Yes,83994,0
+PT-1081,2026-02-12,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,14,Yes,0,0,N/A,TPA_Insurance,68,1018,Yes,5162,Yes,0,1245
+PT-1082,2026-05-25,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,,47,Yes,0,0,N/A,TPA_Insurance,26,311,Yes,0,No,0,1113
+PT-1083,2026-05-03,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,44,No,0,0,N/A,Cash,0,522,Yes,5503,Yes,0,544
+PT-1084,2026-05-03,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,41,No,0,0,N/A,TPA_Insurance,22,0,No,4179,Yes,0,1180
+PT-1085,2026-04-09,DR_MEHTA,Cardiology,IPD,ICU,AarogyaOne,PRO_RAHUL,0,No,2.9,70,Yes,Cash,0,256,Yes,2281,Yes,146123,0
+PT-1086,2026-02-11,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,49,No,0,0,N/A,TPA_Insurance,21,0,No,0,No,0,806
+PT-1087,2026-03-06,DR_SHARMA,Cardiology,IPD,Semi-Private,Corporate Tie-up,PRO_SNEHA,0,No,3.9,54,Yes,Cash,0,869,Yes,4059,Yes,361887,0
+PT-1088,2026-02-26,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,PRO_RAHUL,34,No,0,0,N/A,TPA_Insurance,69,2342,Yes,0,No,0,700
+PT-1089,2026-05-12,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,35,No,0,0,N/A,Cash,0,2670,Yes,2302,Yes,0,940
+PT-1090,2026-04-17,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_RAHUL,29,No,0,0,N/A,TPA_Insurance,22,2544,Yes,1859,Yes,0,1327
+PT-1091,2026-04-14,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,,21,No,0,0,N/A,Cash,0,2426,Yes,3319,Yes,0,648
+PT-1092,2026-01-23,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_RAHUL,47,No,0,0,N/A,Cash,0,384,Yes,4694,Yes,0,818
+PT-1093,2026-03-19,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,27,No,0,0,N/A,TPA_Insurance,40,1977,Yes,1331,Yes,0,1115
+PT-1094,2026-05-12,DR_IYER,General Medicine,OPD,N/A,Google Ads,,22,No,0,0,N/A,Cash,0,3045,Yes,3207,Yes,0,738
+PT-1095,2026-04-22,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,16,No,0,0,N/A,TPA_Insurance,34,0,No,5154,Yes,0,1065
+PT-1096,2026-03-28,DR_MEHTA,Cardiology,IPD,Private,AarogyaOne,PRO_RAHUL,0,No,4.5,149,Yes,Cash,0,219,Yes,1188,Yes,342997,0
+PT-1097,2026-03-21,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,,15,No,0,0,N/A,TPA_Insurance,72,0,No,0,No,0,638
+PT-1098,2026-02-19,DR_IYER,General Medicine,OPD,N/A,Google Ads,PRO_SNEHA,41,No,0,0,N/A,TPA_Insurance,40,216,Yes,1768,Yes,0,1285
+PT-1099,2026-05-02,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,42,No,0,0,N/A,Cash,0,402,Yes,1942,Yes,0,1203
+PT-1100,2026-05-07,DR_IYER,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,42,Yes,0,0,N/A,Cash,0,0,No,5934,Yes,0,606
+PT-1101,2026-01-14,DR_MEHTA,Cardiology,IPD,ICU,AarogyaOne,PRO_SNEHA,0,No,2.3,75,Yes,TPA_Insurance,45,0,No,0,No,241257,0
+PT-1102,2026-05-17,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,43,No,0,0,N/A,TPA_Insurance,70,718,Yes,5199,Yes,0,956
+PT-1103,2026-05-20,DR_IYER,Cardiology,IPD,Semi-Private,Corporate Tie-up,PRO_RAHUL,0,No,2.9,133,Yes,TPA_Insurance,49,1609,Yes,1750,Yes,399203,0
+PT-1104,2026-04-01,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,43,No,0,0,N/A,TPA_Insurance,36,2447,Yes,3807,Yes,0,925
+PT-1105,2026-03-25,DR_MEHTA,Cardiology,IPD,Private,Corporate Tie-up,PRO_RAHUL,0,No,2.6,46,Yes,TPA_Insurance,69,0,No,0,No,90655,0
+PT-1106,2026-03-07,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,31,No,0,0,N/A,Cash,0,312,Yes,3817,Yes,0,1225
+PT-1107,2026-04-05,DR_SHARMA,Cardiology,IPD,ICU,Corporate Tie-up,,0,No,5.6,44,Yes,Cash,0,1653,Yes,4900,Yes,328147,0
+PT-1108,2026-05-09,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,39,No,0,0,N/A,TPA_Insurance,36,925,Yes,1519,Yes,0,1038
+PT-1109,2026-02-19,DR_MEHTA,Cardiology,IPD,Private,AarogyaOne,PRO_RAHUL,0,No,5.9,104,Yes,Cash,0,476,Yes,5200,Yes,231156,0
+PT-1110,2026-05-18,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,13,No,0,0,N/A,TPA_Insurance,69,1318,Yes,0,No,0,1172
+PT-1111,2026-03-19,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,49,No,0,0,N/A,TPA_Insurance,70,0,No,4778,Yes,0,693
+PT-1112,2026-01-22,DR_MEHTA,Cardiology,IPD,ICU,AarogyaOne,PRO_RAHUL,0,No,1.6,100,Yes,TPA_Insurance,23,2068,Yes,4231,Yes,347630,0
+PT-1113,2026-05-21,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,,28,No,0,0,N/A,Cash,0,661,Yes,2579,Yes,0,786
+PT-1114,2026-05-26,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,23,No,0,0,N/A,TPA_Insurance,57,0,No,1195,Yes,0,1411
+PT-1115,2026-01-02,DR_IYER,Cardiology,IPD,Private,Corporate Tie-up,PRO_RAHUL,0,No,3.3,31,Yes,Cash,0,3120,Yes,4347,Yes,101916,0
+PT-1116,2026-02-06,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,12,Yes,0,0,N/A,TPA_Insurance,22,441,Yes,1453,Yes,0,911
+PT-1117,2026-03-15,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,51,No,0,0,N/A,TPA_Insurance,66,0,No,3415,Yes,0,762
+PT-1118,2026-05-22,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,PRO_RAHUL,25,No,0,0,N/A,Cash,0,0,No,1929,Yes,0,839
+PT-1119,2026-03-21,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,13,No,0,0,N/A,Cash,0,2100,Yes,4947,Yes,0,919
+PT-1120,2026-01-06,DR_SHARMA,Cardiology,IPD,Semi-Private,AarogyaOne,PRO_SNEHA,0,No,3.5,43,Yes,Cash,0,0,No,2703,Yes,260368,0
+PT-1121,2026-05-08,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,,49,No,0,0,N/A,TPA_Insurance,68,1865,Yes,4919,Yes,0,927
+PT-1122,2026-04-04,DR_IYER,Cardiology,IPD,Private,AarogyaOne,PRO_SNEHA,0,No,2.1,110,Yes,Cash,0,0,No,4270,Yes,158959,0
+PT-1123,2026-05-19,DR_MEHTA,Cardiology,IPD,Semi-Private,AarogyaOne,,0,No,4.8,98,Yes,TPA_Insurance,19,1374,Yes,3786,Yes,300676,0
+PT-1124,2026-04-23,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,,48,No,0,0,N/A,Cash,0,456,Yes,0,No,0,905
+PT-1125,2026-03-09,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,40,No,0,0,N/A,TPA_Insurance,60,1852,Yes,0,No,0,1478
+PT-1126,2026-05-23,DR_SHARMA,Cardiology,IPD,Private,Google Ads,,0,No,1.1,57,Yes,Cash,0,3084,Yes,2853,Yes,275293,0
+PT-1127,2026-02-11,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,26,No,0,0,N/A,TPA_Insurance,31,2869,Yes,2210,Yes,0,1003
+PT-1128,2026-03-09,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,,14,No,0,0,N/A,TPA_Insurance,26,0,No,5602,Yes,0,662
+PT-1129,2026-05-06,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,48,No,0,0,N/A,TPA_Insurance,44,1871,Yes,0,No,0,534
+PT-1130,2026-01-20,DR_MEHTA,General Medicine,OPD,N/A,Corporate Tie-up,PRO_SNEHA,45,Yes,0,0,N/A,TPA_Insurance,26,339,Yes,2189,Yes,0,1027
+PT-1131,2026-01-14,DR_IYER,General Medicine,OPD,N/A,Google Ads,PRO_SNEHA,41,No,0,0,N/A,TPA_Insurance,40,2113,Yes,2539,Yes,0,702
+PT-1132,2026-05-18,DR_SHARMA,Cardiology,IPD,ICU,Google Ads,,0,No,4.8,63,Yes,Cash,0,2548,Yes,5298,Yes,206950,0
+PT-1133,2026-01-03,DR_SHARMA,General Medicine,OPD,N/A,Corporate Tie-up,,22,No,0,0,N/A,TPA_Insurance,51,0,No,3542,Yes,0,1198
+PT-1134,2026-04-21,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,45,No,0,0,N/A,TPA_Insurance,62,3026,Yes,0,No,0,526
+PT-1135,2026-01-04,DR_SHARMA,Cardiology,IPD,Private,AarogyaOne,PRO_RAHUL,0,No,5.0,47,Yes,TPA_Insurance,44,1444,Yes,0,No,341324,0
+PT-1136,2026-01-27,DR_MEHTA,General Medicine,OPD,N/A,Google Ads,,46,No,0,0,N/A,Cash,0,2142,Yes,0,No,0,970
+PT-1137,2026-05-20,DR_IYER,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,31,No,0,0,N/A,Cash,0,0,No,5459,Yes,0,1343
+PT-1138,2026-04-16,DR_SHARMA,General Medicine,OPD,N/A,AarogyaOne,PRO_SNEHA,51,Yes,0,0,N/A,Cash,0,0,No,0,No,0,858
+PT-1139,2026-02-01,DR_MEHTA,Cardiology,IPD,Private,Corporate Tie-up,,0,No,5.0,87,Yes,Cash,0,0,No,0,No,376629,0
+PT-1140,2026-05-27,DR_IYER,Cardiology,IPD,Private,AarogyaOne,PRO_RAHUL,0,No,4.1,33,Yes,TPA_Insurance,71,2647,Yes,0,No,275681,0
+PT-1141,2026-04-07,DR_SHARMA,Cardiology,IPD,ICU,AarogyaOne,PRO_SNEHA,0,No,5.2,102,Yes,TPA_Insurance,33,2363,Yes,5952,Yes,253184,0
+PT-1142,2026-01-26,DR_MEHTA,General Medicine,OPD,N/A,AarogyaOne,PRO_RAHUL,26,Yes,0,0,N/A,Cash,0,0,No,4712,Yes,0,1371
+PT-1143,2026-03-08,DR_MEHTA,Cardiology,IPD,Private,Corporate Tie-up,PRO_RAHUL,0,No,2.3,135,Yes,Cash,0,1669,Yes,5997,Yes,178432,0
+PT-1144,2026-01-13,DR_SHARMA,General Medicine,OPD,N/A,Google Ads,,51,No,0,0,N/A,TPA_Insurance,73,397,Yes,5911,Yes,0,685
+PT-1145,2026-01-14,DR_IYER,General Medicine,OPD,N/A,Google Ads,,41,No,0,0,N/A,TPA_Insurance,29,326,Yes,4044,Yes,0,1410
+PT-1146,2026-04-21,DR_IYER,Cardiology,IPD,ICU,Google Ads,PRO_RAHUL,0,No,3.6,68,Yes,TPA_Insurance,58,2564,Yes,2270,Yes,313770,0
+PT-1147,2026-01-05,DR_SHARMA,Cardiology,IPD,Private,AarogyaOne,PRO_RAHUL,0,No,1.2,103,Yes,TPA_Insurance,16,0,No,2826,Yes,377983,0
+PT-1148,2026-02-21,DR_MEHTA,Cardiology,IPD,Semi-Private,AarogyaOne,,0,No,3.6,63,Yes,TPA_Insurance,43,0,No,4912,Yes,86549,0
+PT-1149,2026-01-26,DR_IYER,General Medicine,OPD,N/A,Google Ads,PRO_SNEHA,51,No,0,0,N/A,TPA_Insurance,41,2334,Yes,2206,Yes,0,1236
+PT-1150,2026-04-06,DR_SHARMA,Cardiology,IPD,Semi-Private,AarogyaOne,PRO_RAHUL,0,No,3.8,64,Yes,TPA_Insurance,57,1668,Yes,0,No,84617,0

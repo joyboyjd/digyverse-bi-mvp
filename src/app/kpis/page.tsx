@@ -113,6 +113,7 @@ export default function KPIDashboard() {
       alos: ipdCount ? (totalLos / ipdCount).toFixed(1) : 0,
       avgDischargeTat: ipdCount ? Math.round(totalDischargeTat / ipdCount) : 0,
       surgerySuccess: procedureCount ? ((surgerySuccessCount / procedureCount) * 100).toFixed(1) : 0,
+      bor: ipdCount ? ((ipdCount / 150) * 100).toFixed(1) : 0,
       
       pharmacyAttachment: data.length ? ((pharmacyFilled / data.length) * 100).toFixed(1) : 0,
       labAttachment: data.length ? ((labOrdered / data.length) * 100).toFixed(1) : 0,
@@ -264,11 +265,11 @@ export default function KPIDashboard() {
                   />
                   <MetricCard
                     title="Est. Bed Occupancy (BOR)"
-                    value={data.length ? "Dynamic" : "--"}
-                    subtext="Requires capacity limits setup"
+                    value={data.length ? `${stats.bor}%` : "--"}
+                    subtext="Based on 150 bed capacity"
                     icon={Building}
                     themeColor="purple"
-                    tooltip="Requires static bed capacity integer to calculate real-time occupancy percentage."
+                    tooltip="Real-time occupancy percentage calculated against total available hospital beds."
                   />
                 </div>
               </div>

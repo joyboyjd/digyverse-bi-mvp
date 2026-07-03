@@ -1,0 +1,151 @@
+Patient_ID,Date,Doctor_ID,Department,Visit_Type,Ward_Category,Acquisition_Channel,PRO_ID,OPD_Wait_Time_Mins,Converted_To_IPD,Length_Of_Stay_Days,Discharge_TAT_Mins,Surgery_Success,Payment_Type,TPA_Settlement_Days,Pharmacy_Revenue,Pharmacy_Prescription_Filled,Lab_Revenue,Diagnostic_Ordered,Procedure_Revenue,Revenue_Consultation
+PT-1001,2026-01-07,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_VIKAS,27,Yes,0,0,N/A,Cash,0,3025,Yes,1192,Yes,0,1438
+PT-1002,2026-05-08,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,48,No,0,0,N/A,Cash,0,457,Yes,5764,Yes,0,1085
+PT-1003,2026-02-27,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,54,Yes,0,0,N/A,Cash,0,1742,Yes,2805,Yes,0,561
+PT-1004,2026-01-16,DR_PATEL,Joint Replacement,IPD,General,AarogyaOne,,0,No,1.3,104,No,Cash,0,3071,Yes,3429,Yes,111915,0
+PT-1005,2026-03-17,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,21,No,0,0,N/A,TPA_Insurance,69,0,No,4793,Yes,0,1344
+PT-1006,2026-04-22,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,18,No,0,0,N/A,TPA_Insurance,69,2489,Yes,2289,Yes,0,1242
+PT-1007,2026-03-13,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,,0,No,2.4,117,Yes,TPA_Insurance,35,3153,Yes,1139,Yes,60136,0
+PT-1008,2026-03-04,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,47,Yes,0,0,N/A,TPA_Insurance,33,2079,Yes,5433,Yes,0,699
+PT-1009,2026-03-20,DR_SINGH,Joint Replacement,IPD,General,Direct Walk-in,,0,No,3.7,92,Yes,Cash,0,3159,Yes,0,No,74953,0
+PT-1010,2026-04-25,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,47,No,0,0,N/A,Cash,0,990,Yes,0,No,0,542
+PT-1011,2026-01-01,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,54,No,0,0,N/A,Cash,0,1153,Yes,4446,Yes,0,689
+PT-1012,2026-04-11,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,51,No,0,0,N/A,TPA_Insurance,18,1503,Yes,2406,Yes,0,1092
+PT-1013,2026-02-24,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,27,No,0,0,N/A,TPA_Insurance,33,0,No,2426,Yes,0,771
+PT-1014,2026-01-19,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,29,No,0,0,N/A,Cash,0,2258,Yes,3469,Yes,0,824
+PT-1015,2026-01-11,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,28,No,0,0,N/A,TPA_Insurance,20,1294,Yes,0,No,0,1267
+PT-1016,2026-04-10,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,10,Yes,0,0,N/A,Cash,0,3198,Yes,1528,Yes,0,1017
+PT-1017,2026-03-22,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,37,No,0,0,N/A,Cash,0,2769,Yes,3234,Yes,0,1393
+PT-1018,2026-04-22,DR_SINGH,Joint Replacement,IPD,General,Referral PRO,PRO_AMIT,0,No,4.2,132,Yes,TPA_Insurance,58,517,Yes,1958,Yes,94406,0
+PT-1019,2026-02-08,DR_PATEL,Joint Replacement,IPD,Private,AarogyaOne,PRO_VIKAS,0,No,2.2,38,Yes,TPA_Insurance,30,1222,Yes,2506,Yes,72789,0
+PT-1020,2026-02-15,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,30,No,0,0,N/A,TPA_Insurance,64,1070,Yes,2795,Yes,0,1125
+PT-1021,2026-03-01,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,,51,No,0,0,N/A,TPA_Insurance,54,0,No,2352,Yes,0,1363
+PT-1022,2026-01-11,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_NEHA,22,No,0,0,N/A,TPA_Insurance,34,2044,Yes,3840,Yes,0,531
+PT-1023,2026-04-25,DR_SINGH,Joint Replacement,IPD,Private,Direct Walk-in,,0,No,2.0,117,Yes,TPA_Insurance,33,0,No,3053,Yes,106037,0
+PT-1024,2026-05-05,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,10,No,0,0,N/A,TPA_Insurance,57,324,Yes,4695,Yes,0,991
+PT-1025,2026-03-05,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,28,No,0,0,N/A,TPA_Insurance,44,291,Yes,1660,Yes,0,1254
+PT-1026,2026-02-02,DR_SINGH,Joint Replacement,IPD,General,Referral PRO,,0,No,5.7,52,Yes,Cash,0,0,No,0,No,159018,0
+PT-1027,2026-04-22,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_VIKAS,14,No,0,0,N/A,Cash,0,2200,Yes,3829,Yes,0,1118
+PT-1028,2026-03-23,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,36,No,0,0,N/A,Cash,0,906,Yes,4574,Yes,0,1381
+PT-1029,2026-05-07,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_VIKAS,28,No,0,0,N/A,Cash,0,933,Yes,2900,Yes,0,672
+PT-1030,2026-01-09,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,34,No,0,0,N/A,TPA_Insurance,70,2050,Yes,3234,Yes,0,956
+PT-1031,2026-02-02,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,33,No,0,0,N/A,TPA_Insurance,70,3168,Yes,1030,Yes,0,885
+PT-1032,2026-05-03,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,,39,No,0,0,N/A,Cash,0,2601,Yes,3570,Yes,0,775
+PT-1033,2026-04-11,DR_SINGH,Joint Replacement,IPD,Private,AarogyaOne,PRO_VIKAS,0,No,4.3,149,Yes,TPA_Insurance,24,3005,Yes,2948,Yes,210851,0
+PT-1034,2026-03-15,DR_SINGH,Joint Replacement,IPD,General,Referral PRO,,0,No,4.6,119,Yes,TPA_Insurance,31,3007,Yes,3219,Yes,104490,0
+PT-1035,2026-02-07,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,19,No,0,0,N/A,TPA_Insurance,34,3011,Yes,5270,Yes,0,547
+PT-1036,2026-05-09,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,24,No,0,0,N/A,Cash,0,0,No,3190,Yes,0,949
+PT-1037,2026-02-19,DR_SINGH,Joint Replacement,IPD,General,Direct Walk-in,PRO_NEHA,0,No,1.6,71,Yes,Cash,0,1650,Yes,4472,Yes,62280,0
+PT-1038,2026-03-17,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,22,No,0,0,N/A,Cash,0,1473,Yes,2971,Yes,0,559
+PT-1039,2026-03-27,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,31,No,0,0,N/A,Cash,0,1596,Yes,5938,Yes,0,951
+PT-1040,2026-02-11,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,17,No,0,0,N/A,Cash,0,1307,Yes,1087,Yes,0,886
+PT-1041,2026-04-06,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,52,No,0,0,N/A,Cash,0,1116,Yes,5202,Yes,0,1386
+PT-1042,2026-03-03,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,20,Yes,0,0,N/A,Cash,0,0,No,4887,Yes,0,1059
+PT-1043,2026-03-28,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,PRO_AMIT,34,No,0,0,N/A,Cash,0,1267,Yes,1400,Yes,0,1007
+PT-1044,2026-02-04,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,,0,No,2.5,149,Yes,Cash,0,0,No,2049,Yes,144096,0
+PT-1045,2026-05-05,DR_SINGH,Joint Replacement,IPD,Private,Direct Walk-in,PRO_VIKAS,0,No,4.9,111,No,TPA_Insurance,39,1344,Yes,5368,Yes,186912,0
+PT-1046,2026-01-24,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,45,No,0,0,N/A,Cash,0,751,Yes,4384,Yes,0,1252
+PT-1047,2026-01-10,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,26,No,0,0,N/A,Cash,0,0,No,5006,Yes,0,542
+PT-1048,2026-04-07,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,48,No,0,0,N/A,Cash,0,2908,Yes,3656,Yes,0,596
+PT-1049,2026-01-03,DR_PATEL,Joint Replacement,IPD,General,Direct Walk-in,,0,No,5.2,42,Yes,Cash,0,319,Yes,4877,Yes,84599,0
+PT-1050,2026-03-21,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,,36,Yes,0,0,N/A,Cash,0,2138,Yes,1353,Yes,0,979
+PT-1051,2026-03-22,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,54,No,0,0,N/A,Cash,0,3008,Yes,5893,Yes,0,837
+PT-1052,2026-01-05,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,40,No,0,0,N/A,TPA_Insurance,52,1483,Yes,1356,Yes,0,827
+PT-1053,2026-05-16,DR_SINGH,Joint Replacement,IPD,General,Direct Walk-in,,0,No,5.1,73,Yes,TPA_Insurance,44,1191,Yes,4484,Yes,98327,0
+PT-1054,2026-01-14,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,24,Yes,0,0,N/A,Cash,0,2747,Yes,2123,Yes,0,764
+PT-1055,2026-05-13,DR_SINGH,Joint Replacement,IPD,Private,Referral PRO,,0,No,4.3,60,Yes,TPA_Insurance,52,2120,Yes,2359,Yes,163882,0
+PT-1056,2026-04-14,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,27,No,0,0,N/A,Cash,0,2829,Yes,5500,Yes,0,1134
+PT-1057,2026-01-15,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,30,No,0,0,N/A,Cash,0,0,No,3886,Yes,0,1149
+PT-1058,2026-02-28,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,,26,No,0,0,N/A,TPA_Insurance,63,1697,Yes,1174,Yes,0,633
+PT-1059,2026-03-24,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,22,No,0,0,N/A,Cash,0,1850,Yes,5989,Yes,0,1396
+PT-1060,2026-01-08,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,27,No,0,0,N/A,TPA_Insurance,33,0,No,0,No,0,1105
+PT-1061,2026-03-02,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,14,No,0,0,N/A,TPA_Insurance,20,251,Yes,4965,Yes,0,669
+PT-1062,2026-05-18,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,PRO_VIKAS,44,No,0,0,N/A,Cash,0,0,No,2360,Yes,0,603
+PT-1063,2026-01-10,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,PRO_VIKAS,27,No,0,0,N/A,Cash,0,1445,Yes,2884,Yes,0,1213
+PT-1064,2026-04-23,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,PRO_NEHA,0,No,4.8,92,No,Cash,0,1927,Yes,4264,Yes,203654,0
+PT-1065,2026-03-02,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,19,No,0,0,N/A,Cash,0,1327,Yes,1996,Yes,0,803
+PT-1066,2026-02-24,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,32,No,0,0,N/A,Cash,0,0,No,1518,Yes,0,1483
+PT-1067,2026-01-17,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_AMIT,30,Yes,0,0,N/A,Cash,0,2909,Yes,4128,Yes,0,1471
+PT-1068,2026-03-16,DR_SINGH,Joint Replacement,IPD,Private,AarogyaOne,,0,No,2.1,35,Yes,TPA_Insurance,51,2805,Yes,3850,Yes,94216,0
+PT-1069,2026-02-06,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,15,No,0,0,N/A,TPA_Insurance,32,891,Yes,3931,Yes,0,1330
+PT-1070,2026-05-21,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_NEHA,16,No,0,0,N/A,TPA_Insurance,39,3159,Yes,3351,Yes,0,1186
+PT-1071,2026-02-25,DR_PATEL,Joint Replacement,IPD,General,AarogyaOne,,0,No,5.0,124,Yes,Cash,0,2681,Yes,5277,Yes,155789,0
+PT-1072,2026-05-15,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_VIKAS,54,No,0,0,N/A,Cash,0,2388,Yes,3729,Yes,0,1322
+PT-1073,2026-05-13,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,27,No,0,0,N/A,Cash,0,216,Yes,1325,Yes,0,570
+PT-1074,2026-01-11,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_AMIT,20,No,0,0,N/A,Cash,0,2478,Yes,4271,Yes,0,1253
+PT-1075,2026-01-12,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,49,No,0,0,N/A,Cash,0,1108,Yes,1658,Yes,0,1108
+PT-1076,2026-04-15,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,PRO_AMIT,0,No,1.4,35,Yes,TPA_Insurance,58,1111,Yes,3905,Yes,181843,0
+PT-1077,2026-05-11,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_AMIT,37,No,0,0,N/A,TPA_Insurance,61,0,No,3437,Yes,0,946
+PT-1078,2026-04-27,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,,0,No,2.4,79,Yes,TPA_Insurance,49,415,Yes,1773,Yes,294216,0
+PT-1079,2026-04-25,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,20,No,0,0,N/A,TPA_Insurance,67,1184,Yes,2659,Yes,0,599
+PT-1080,2026-04-12,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,49,No,0,0,N/A,Cash,0,357,Yes,2162,Yes,0,773
+PT-1081,2026-02-24,DR_PATEL,Joint Replacement,IPD,Private,AarogyaOne,,0,No,5.4,117,Yes,Cash,0,1117,Yes,2194,Yes,260573,0
+PT-1082,2026-05-24,DR_SINGH,Joint Replacement,IPD,Private,AarogyaOne,,0,No,2.9,40,Yes,Cash,0,1357,Yes,3832,Yes,278630,0
+PT-1083,2026-01-20,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,28,No,0,0,N/A,TPA_Insurance,66,0,No,1905,Yes,0,1262
+PT-1084,2026-04-10,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,45,Yes,0,0,N/A,TPA_Insurance,37,608,Yes,1974,Yes,0,765
+PT-1085,2026-05-07,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,,44,No,0,0,N/A,Cash,0,2314,Yes,0,No,0,1208
+PT-1086,2026-01-12,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,41,No,0,0,N/A,Cash,0,2208,Yes,5068,Yes,0,1442
+PT-1087,2026-03-07,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,54,Yes,0,0,N/A,Cash,0,285,Yes,4751,Yes,0,862
+PT-1088,2026-04-14,DR_PATEL,Joint Replacement,IPD,Private,AarogyaOne,,0,No,1.1,74,Yes,TPA_Insurance,73,863,Yes,5701,Yes,144292,0
+PT-1089,2026-02-16,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,PRO_AMIT,37,Yes,0,0,N/A,Cash,0,3113,Yes,5673,Yes,0,952
+PT-1090,2026-03-11,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,16,Yes,0,0,N/A,TPA_Insurance,67,2789,Yes,2031,Yes,0,1296
+PT-1091,2026-05-01,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,31,No,0,0,N/A,Cash,0,2122,Yes,4774,Yes,0,1106
+PT-1092,2026-04-20,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,36,No,0,0,N/A,TPA_Insurance,68,913,Yes,4012,Yes,0,1432
+PT-1093,2026-01-28,DR_SINGH,Joint Replacement,IPD,General,AarogyaOne,PRO_VIKAS,0,No,2.1,45,Yes,TPA_Insurance,59,854,Yes,5824,Yes,247500,0
+PT-1094,2026-05-15,DR_PATEL,Joint Replacement,IPD,Private,AarogyaOne,PRO_NEHA,0,No,2.3,94,Yes,TPA_Insurance,23,633,Yes,2344,Yes,104481,0
+PT-1095,2026-03-20,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,27,No,0,0,N/A,Cash,0,0,No,5305,Yes,0,1058
+PT-1096,2026-03-24,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_NEHA,20,No,0,0,N/A,TPA_Insurance,71,1531,Yes,4997,Yes,0,618
+PT-1097,2026-03-22,DR_SINGH,Joint Replacement,IPD,General,AarogyaOne,,0,No,5.7,45,Yes,Cash,0,317,Yes,5533,Yes,118358,0
+PT-1098,2026-05-26,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,26,Yes,0,0,N/A,Cash,0,308,Yes,2527,Yes,0,1183
+PT-1099,2026-04-20,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,41,Yes,0,0,N/A,Cash,0,1526,Yes,5626,Yes,0,646
+PT-1100,2026-03-14,DR_PATEL,Joint Replacement,IPD,General,Direct Walk-in,PRO_VIKAS,0,No,3.7,96,Yes,Cash,0,337,Yes,4148,Yes,187383,0
+PT-1101,2026-02-16,DR_SINGH,Joint Replacement,IPD,Private,AarogyaOne,PRO_VIKAS,0,No,3.0,125,Yes,Cash,0,1608,Yes,4495,Yes,57243,0
+PT-1102,2026-02-07,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,PRO_NEHA,44,No,0,0,N/A,TPA_Insurance,28,952,Yes,1023,Yes,0,594
+PT-1103,2026-03-14,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,10,Yes,0,0,N/A,TPA_Insurance,34,1371,Yes,1836,Yes,0,822
+PT-1104,2026-05-09,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,PRO_VIKAS,0,No,5.5,133,Yes,TPA_Insurance,26,2979,Yes,1753,Yes,60404,0
+PT-1105,2026-03-04,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,PRO_NEHA,39,No,0,0,N/A,Cash,0,3196,Yes,1155,Yes,0,1496
+PT-1106,2026-04-01,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_NEHA,35,No,0,0,N/A,TPA_Insurance,64,0,No,5651,Yes,0,618
+PT-1107,2026-04-10,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,,52,No,0,0,N/A,Cash,0,1774,Yes,4095,Yes,0,913
+PT-1108,2026-02-14,DR_SINGH,Joint Replacement,IPD,Private,Referral PRO,,0,No,4.6,50,Yes,Cash,0,0,No,2113,Yes,178884,0
+PT-1109,2026-03-04,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,,0,No,4.0,119,Yes,Cash,0,2336,Yes,2220,Yes,276328,0
+PT-1110,2026-01-05,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,46,No,0,0,N/A,Cash,0,0,No,3299,Yes,0,955
+PT-1111,2026-01-20,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,46,No,0,0,N/A,TPA_Insurance,39,2132,Yes,2371,Yes,0,652
+PT-1112,2026-05-15,DR_PATEL,Joint Replacement,IPD,General,AarogyaOne,,0,No,1.9,96,Yes,Cash,0,1361,Yes,3430,Yes,133801,0
+PT-1113,2026-04-02,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,33,No,0,0,N/A,Cash,0,2174,Yes,2620,Yes,0,1254
+PT-1114,2026-04-05,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,39,No,0,0,N/A,Cash,0,2041,Yes,5250,Yes,0,574
+PT-1115,2026-03-22,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,PRO_VIKAS,32,No,0,0,N/A,TPA_Insurance,33,2775,Yes,5753,Yes,0,915
+PT-1116,2026-03-20,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,PRO_VIKAS,0,No,3.3,149,Yes,TPA_Insurance,49,0,No,0,No,118823,0
+PT-1117,2026-03-04,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,48,Yes,0,0,N/A,TPA_Insurance,25,2264,Yes,3621,Yes,0,666
+PT-1118,2026-03-13,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_AMIT,12,No,0,0,N/A,TPA_Insurance,38,1058,Yes,1719,Yes,0,812
+PT-1119,2026-01-07,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,48,No,0,0,N/A,Cash,0,346,Yes,1853,Yes,0,752
+PT-1120,2026-03-08,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,12,No,0,0,N/A,Cash,0,2665,Yes,1070,Yes,0,935
+PT-1121,2026-02-12,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,28,No,0,0,N/A,TPA_Insurance,60,519,Yes,4205,Yes,0,1472
+PT-1122,2026-05-01,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,15,No,0,0,N/A,Cash,0,1244,Yes,1621,Yes,0,791
+PT-1123,2026-02-17,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,22,No,0,0,N/A,TPA_Insurance,51,2061,Yes,4364,Yes,0,856
+PT-1124,2026-05-24,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,38,No,0,0,N/A,Cash,0,0,No,3620,Yes,0,585
+PT-1125,2026-01-05,DR_SINGH,Joint Replacement,IPD,Private,Direct Walk-in,PRO_NEHA,0,No,3.5,55,Yes,TPA_Insurance,42,2039,Yes,5826,Yes,190250,0
+PT-1126,2026-01-17,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,PRO_VIKAS,0,No,5.5,115,Yes,TPA_Insurance,45,1228,Yes,2473,Yes,173886,0
+PT-1127,2026-02-06,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,47,Yes,0,0,N/A,TPA_Insurance,29,0,No,0,No,0,825
+PT-1128,2026-02-02,DR_SINGH,Joint Replacement,IPD,General,Referral PRO,,0,No,5.3,34,Yes,Cash,0,2972,Yes,4506,Yes,70594,0
+PT-1129,2026-02-22,DR_PATEL,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_AMIT,54,No,0,0,N/A,Cash,0,1136,Yes,1516,Yes,0,1468
+PT-1130,2026-03-17,DR_PATEL,Joint Replacement,IPD,General,Referral PRO,,0,No,4.2,105,Yes,Cash,0,3143,Yes,1289,Yes,173072,0
+PT-1131,2026-01-24,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_AMIT,21,No,0,0,N/A,Cash,0,0,No,1049,Yes,0,1379
+PT-1132,2026-03-16,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_NEHA,21,No,0,0,N/A,TPA_Insurance,47,0,No,1647,Yes,0,1108
+PT-1133,2026-01-24,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,23,No,0,0,N/A,Cash,0,2532,Yes,1005,Yes,0,1371
+PT-1134,2026-02-20,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,10,No,0,0,N/A,Cash,0,0,No,3757,Yes,0,1418
+PT-1135,2026-04-15,DR_PATEL,Joint Replacement,IPD,Private,AarogyaOne,,0,No,5.8,119,Yes,Cash,0,2830,Yes,2647,Yes,219293,0
+PT-1136,2026-05-18,DR_SINGH,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,52,No,0,0,N/A,Cash,0,0,No,5028,Yes,0,788
+PT-1137,2026-01-21,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,53,No,0,0,N/A,Cash,0,426,Yes,2767,Yes,0,1457
+PT-1138,2026-04-14,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,,19,No,0,0,N/A,Cash,0,3108,Yes,4733,Yes,0,782
+PT-1139,2026-05-17,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,24,No,0,0,N/A,Cash,0,1082,Yes,0,No,0,1033
+PT-1140,2026-01-19,DR_SINGH,Joint Replacement,IPD,General,AarogyaOne,,0,No,5.1,123,Yes,Cash,0,3135,Yes,2493,Yes,147393,0
+PT-1141,2026-02-25,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_AMIT,51,No,0,0,N/A,Cash,0,0,No,1033,Yes,0,687
+PT-1142,2026-01-28,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,PRO_VIKAS,49,No,0,0,N/A,Cash,0,2321,Yes,0,No,0,883
+PT-1143,2026-04-21,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,PRO_VIKAS,31,No,0,0,N/A,Cash,0,2443,Yes,2487,Yes,0,650
+PT-1144,2026-01-28,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,PRO_VIKAS,16,No,0,0,N/A,Cash,0,527,Yes,4030,Yes,0,1385
+PT-1145,2026-05-28,DR_SINGH,Physiotherapy,OPD,N/A,Direct Walk-in,,47,No,0,0,N/A,Cash,0,487,Yes,1539,Yes,0,1076
+PT-1146,2026-05-14,DR_PATEL,Physiotherapy,OPD,N/A,Referral PRO,,29,No,0,0,N/A,Cash,0,1416,Yes,0,No,0,1144
+PT-1147,2026-03-16,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,,12,No,0,0,N/A,TPA_Insurance,64,2910,Yes,4521,Yes,0,1115
+PT-1148,2026-05-17,DR_PATEL,Joint Replacement,IPD,Private,Direct Walk-in,PRO_VIKAS,0,No,5.7,140,Yes,TPA_Insurance,32,608,Yes,3601,Yes,247800,0
+PT-1149,2026-04-27,DR_PATEL,Physiotherapy,OPD,N/A,AarogyaOne,PRO_AMIT,23,No,0,0,N/A,Cash,0,811,Yes,3837,Yes,0,921
+PT-1150,2026-03-19,DR_SINGH,Physiotherapy,OPD,N/A,AarogyaOne,PRO_VIKAS,36,No,0,0,N/A,Cash,0,3116,Yes,5369,Yes,0,984
