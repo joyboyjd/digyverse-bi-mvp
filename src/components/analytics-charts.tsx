@@ -75,7 +75,7 @@ export default function AnalyticsCharts({ viewState }: AnalyticsChartsProps) {
     const timelineMap: Record<string, any> = {};
     
     data.forEach((row: any) => {
-      // Robust Date Parsing (Handles both Excel serial numbers and text strings)
+      // Robust Date Parsing
       let dateVal = row.Admission_Date || row.Date || row.Consultation_Date;
       let month = "Unknown";
       
@@ -112,7 +112,8 @@ export default function AnalyticsCharts({ viewState }: AnalyticsChartsProps) {
       const channel = row.Acquisition_Channel || "Direct Walk-in";
       const rev = Number(row.Billing_Amount_INR) || 0;
       if (!channelMap[channel]) channelMap[channel] = { name: channel, dynamicValue: 0 };
-      channelMap[channel].dynamicValue += rev;
+      // THE FIX: We MUST wrap this in Number() to guarantee it's mathematically sound for the Bar height
+      channelMap[channel].dynamicValue = Number(channelMap[channel].dynamicValue) + Number(rev); 
     });
 
     const parsedChannels = Object.values(channelMap)
@@ -225,10 +226,12 @@ export default function AnalyticsCharts({ viewState }: AnalyticsChartsProps) {
                 fontSize={10} 
                 tickLine={false} 
                 axisLine={false} 
-                tickFormatter={(value) => isDynamic ? `₹${(value / 1000).toFixed(0)}k` : value}
+                // THE FIX: Format as numbers safely
+                tickFormatter={(value) => isDynamic ? `₹${(Number(value) / 1000).toFixed(0)}k` : value}
               />
               <Tooltip
-                formatter={(value: any) => isDynamic ? [`₹${value.toLocaleString("en-IN")}`, "Yield Generated"] : [value, "ROI Multiple"]}
+                // THE FIX: Force Number() to prevent string crashes in the tooltip renderer
+                formatter={(value: any) => isDynamic ? [`₹${Number(value).toLocaleString("en-IN")}`, "Yield Generated"] : [value, "ROI Multiple"]}
                 contentStyle={{
                   backgroundColor: "#09090b",
                   border: "1px solid rgba(63, 63, 70, 0.5)",
