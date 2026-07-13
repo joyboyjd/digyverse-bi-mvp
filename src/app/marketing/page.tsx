@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import Sidebar from "@/components/sidebar";
 import DashboardHeader from "@/components/dashboard-header";
 import { useData } from "../../context/DataContext"; 
-import { Sparkles, ArrowRight, CheckCircle2, Copy, Image as ImageIcon, RefreshCcw, Plus, Wand2, Lightbulb } from "lucide-react";
+import { Sparkles, ArrowRight, CheckCircle2, Copy, Image as ImageIcon, RefreshCcw, Plus, Wand2, Lightbulb, Edit2, Save } from "lucide-react";
 
 export default function AIMarketingEngine() {
   const { parsedMetrics } = useData();
@@ -16,7 +16,11 @@ export default function AIMarketingEngine() {
   const [generatedCopy, setGeneratedCopy] = useState("");
   const [isRefining, setIsRefining] = useState(false);
 
-  // --- ADVANCED KPI EXTRACTION (Defined only once!) ---
+  // --- EDIT MODE STATE ---
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editRationale, setEditRationale] = useState("");
+
   const data = parsedMetrics?.sheetData || [];
   
   const stats = useMemo(() => {
@@ -32,37 +36,28 @@ export default function AIMarketingEngine() {
       deptCount[dept] = (deptCount[dept] || 0) + 1;
     });
 
-    // Find the most popular department dynamically
     const topDept = Object.keys(deptCount).sort((a,b) => deptCount[b] - deptCount[a])[0] || "Cardiology";
-    
-    // Calculate the actual conversion rate
     const conversionRate = opdCount ? ((opdConverted / opdCount) * 100) : 0;
 
     return { ipdCount, opdCount, topDept, conversionRate, successRate: "100%" };
   }, [data]);
 
-  // --- DYNAMIC, LOGIC-DRIVEN SUGGESTIONS ---
   const suggestedGoals = useMemo(() => {
     const goals = [];
-    
     if (stats.conversionRate > 0 && stats.conversionRate < 25) {
       goals.push(`Target our ${stats.opdCount} OPD walk-ins to improve our low ${stats.conversionRate.toFixed(1)}% IPD conversion rate in ${stats.topDept}.`);
     } else {
       goals.push(`Run an acquisition campaign to bring new OPD consults into the ${stats.topDept} department.`);
     }
-
     goals.push(`Promote our ${stats.successRate} complication-free surgery record to build absolute brand trust.`);
-
     if (stats.ipdCount > 30) {
       goals.push(`Capitalize on our high IPD volume by driving premium, insurance-backed (TPA) admissions.`);
     } else {
       goals.push(`Launch a local awareness drive to boost overall IPD admissions across all departments.`);
     }
-
     return goals;
   }, [stats]);
 
-  // --- STEP 1: GENERATE STRATEGIES (API Call) ---
   const handleGenerateStrategy = async (mode: "new" | "append" = "new") => {
     if (!campaignGoal) return alert("Please enter a campaign goal!");
     setIsGenerating(true);
@@ -84,31 +79,51 @@ export default function AIMarketingEngine() {
       setStep(2);
     } catch (err) {
       console.error(err);
+      // Fallback if API fails
+      setStrategies([{ title: "Local Fallback Strategy", rationale: "Ensure your API route is returning dynamic data based on the goal." }]);
+      setStep(2);
     }
     setIsGenerating(false);
   };
 
-  // --- STEP 2: GENERATE COPY (Mocked Claude Call) ---
   const handleGenerateCopy = () => {
     if (selectedStrategy === null) return alert("Select a strategy first!");
     setIsGenerating(true);
 
+    // Capture the exact strategy the user selected (including manual edits)
+    const selected = strategies[selectedStrategy];
+
     setTimeout(() => {
       setGeneratedCopy(
-        `[PROBLEM]\nLiving with chronic issues doesn't just limit your movement—it drains your energy and keeps you from the moments that matter most.\n\n[AGITATE]\nMany patients delay seeking help because they fear complicated procedures or long recovery times, settling for temporary fixes while the underlying issue worsens.\n\n[SOLUTION]\nIt doesn't have to be this way. At our ${stats.topDept} center of excellence, we maintain a ${stats.successRate} complication-free surgery record. Our advanced IPD facilities ensure you get back on your feet faster, with complete peace of mind.\n\n👉 Stop waiting. Book your priority consultation today and take the first step toward a pain-free life.`
+        `[CAMPAIGN OBJECTIVE]\n${campaignGoal}\n\n[STRATEGIC ANGLE]\n${selected.title}\n\n[PROBLEM]\nWhen seasonal health threats escalate, communities need fast, reliable answers. ${selected.rationale}\n\n[SOLUTION]\nAt our ${stats.topDept} center, we are committed to providing immediate, expert care. We are launching this initiative to ensure patients get the right diagnosis and treatment without the agonizing wait times.\n\n👉 Don't compromise on your family's health. Walk in for your priority OPD consultation today.\n\n---\n✨ MVP System Note: This copy is now dynamically woven from your active inputs in Steps 1 & 2. In production, the Agentic LLM will synthesize this data into highly creative PAS (Problem-Agitate-Solution) frameworks.`
       );
       setIsGenerating(false);
       setStep(3);
-    }, 2000);
+    }, 1500);
   };
 
-  // --- STEP 3: HYBRID EDITOR REFINE ---
   const handleRefineCopy = () => {
     setIsRefining(true);
     setTimeout(() => {
       setGeneratedCopy((prev) => prev + "\n\n✨ [AI Polished]: Adjusted tone for maximum professional empathy.");
       setIsRefining(false);
     }, 1500);
+  };
+
+  // --- EDITING HANDLERS ---
+  const startEditing = (idx: number, strat: any, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingIndex(idx);
+    setEditTitle(strat.title);
+    setEditRationale(strat.rationale);
+  };
+
+  const saveEditing = (idx: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const newStrategies = [...strategies];
+    newStrategies[idx] = { ...newStrategies[idx], title: editTitle, rationale: editRationale };
+    setStrategies(newStrategies);
+    setEditingIndex(null);
   };
 
   return (
@@ -128,6 +143,7 @@ export default function AIMarketingEngine() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="space-y-6">
               
+              {/* STEP 1 */}
               <div className={`glass-panel p-6 rounded-2xl border ${step === 1 ? 'border-emerald-500/50 bg-emerald-950/10' : 'border-zinc-800 bg-zinc-950/50'}`}>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-white">Step 1: Campaign Directive</h3>
@@ -161,24 +177,65 @@ export default function AIMarketingEngine() {
                 )}
               </div>
 
+              {/* STEP 2 */}
               {step >= 2 && (
                 <div className={`glass-panel p-6 rounded-2xl border ${step === 2 ? 'border-emerald-500/50 bg-emerald-950/10' : 'border-zinc-800 bg-zinc-950/50'} animate-in fade-in`}>
                   <h3 className="text-lg font-bold text-white mb-4">Step 2: Select Strategic Angle</h3>
                   
                   <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                     {strategies.map((strat, idx) => (
-                      <div key={idx} onClick={() => step === 2 && setSelectedStrategy(idx)} className={`p-4 rounded-xl border cursor-pointer transition-all ${selectedStrategy === idx ? 'border-emerald-500 bg-emerald-500/10' : 'border-zinc-700 bg-zinc-900 hover:border-zinc-500'}`}>
-                        <div className="flex justify-between items-center mb-1">
-                          <h4 className="font-bold text-white">{strat.title}</h4>
-                          {selectedStrategy === idx && <CheckCircle2 size={18} className="text-emerald-400" />}
-                        </div>
-                        <p className="text-sm text-zinc-400">{strat.rationale}</p>
+                      <div 
+                        key={idx} 
+                        onClick={() => {
+                          if (step === 2 && editingIndex !== idx) {
+                            setSelectedStrategy(idx);
+                          }
+                        }} 
+                        className={`p-4 rounded-xl border cursor-pointer transition-all ${selectedStrategy === idx ? 'border-emerald-500 bg-emerald-500/10' : 'border-zinc-700 bg-zinc-900 hover:border-zinc-500'}`}
+                      >
+                        {editingIndex === idx ? (
+                          // --- EDITING UI ---
+                          <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
+                            <input 
+                              value={editTitle} 
+                              onChange={(e) => setEditTitle(e.target.value)} 
+                              className="w-full bg-zinc-950 border border-emerald-500/50 rounded-lg p-2 text-white font-bold text-sm focus:outline-none focus:border-emerald-500" 
+                              placeholder="Strategy Title"
+                            />
+                            <textarea 
+                              value={editRationale} 
+                              onChange={(e) => setEditRationale(e.target.value)} 
+                              className="w-full bg-zinc-950 border border-emerald-500/50 rounded-lg p-2 text-zinc-300 text-sm h-24 focus:outline-none focus:border-emerald-500 custom-scrollbar resize-none" 
+                              placeholder="Strategy Rationale"
+                            />
+                            <div className="flex justify-end gap-2">
+                              <button onClick={(e) => { e.stopPropagation(); setEditingIndex(null); }} className="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white transition-all">Cancel</button>
+                              <button onClick={(e) => saveEditing(idx, e)} className="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 transition-all">
+                                <Save size={14}/> Save Changes
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          // --- VIEWING UI ---
+                          <>
+                            <div className="flex justify-between items-start mb-2">
+                              <h4 className="font-bold text-white pr-4">{strat.title}</h4>
+                              <div className="flex items-center gap-3 mt-0.5">
+                                <button onClick={(e) => startEditing(idx, strat, e)} className="text-zinc-500 hover:text-emerald-400 transition-colors" title="Edit Strategy">
+                                  <Edit2 size={16} />
+                                </button>
+                                {selectedStrategy === idx && <CheckCircle2 size={18} className="text-emerald-400" />}
+                              </div>
+                            </div>
+                            <p className="text-sm text-zinc-400 leading-relaxed">{strat.rationale}</p>
+                          </>
+                        )}
                       </div>
                     ))}
                   </div>
 
                   {step === 2 && (
-                    <div className="mt-4 space-y-3">
+                    <div className="mt-5 space-y-3">
                       <div className="grid grid-cols-2 gap-3">
                         <button onClick={() => handleGenerateStrategy("new")} disabled={isGenerating} className="flex items-center justify-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white py-2.5 rounded-xl text-sm font-medium transition-all">
                           <RefreshCcw size={16} /> Regenerate All
@@ -187,8 +244,8 @@ export default function AIMarketingEngine() {
                           <Plus size={16} /> Add More Options
                         </button>
                       </div>
-                      <button onClick={handleGenerateCopy} disabled={isGenerating || selectedStrategy === null} className="flex items-center justify-center gap-2 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition-all">
-                        {isGenerating ? "Drafting PAS Copy via Claude..." : "Write Campaign Copy"} <ArrowRight size={18} />
+                      <button onClick={handleGenerateCopy} disabled={isGenerating || selectedStrategy === null || editingIndex !== null} className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)] disabled:opacity-50 disabled:shadow-none">
+                        {isGenerating ? "Drafting PAS Copy..." : "Write Campaign Copy"} <ArrowRight size={18} />
                       </button>
                     </div>
                   )}
@@ -196,6 +253,7 @@ export default function AIMarketingEngine() {
               )}
             </div>
 
+            {/* STEP 3 */}
             {step >= 3 && (
               <div className="space-y-6 animate-in fade-in">
                 <div className="glass-panel p-6 rounded-2xl border border-emerald-500/30 bg-zinc-950/80">
@@ -205,18 +263,18 @@ export default function AIMarketingEngine() {
                         <button onClick={handleRefineCopy} disabled={isRefining} className="text-purple-400 hover:bg-purple-500/20 border border-purple-500/30 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 transition-all">
                           <Wand2 size={14} /> {isRefining ? "Refining..." : "AI Polish"}
                         </button>
-                        <button className="text-zinc-400 hover:text-white p-1.5 bg-zinc-900 rounded-lg"><Copy size={16} /></button>
+                        <button className="text-zinc-400 hover:text-white p-1.5 bg-zinc-900 rounded-lg transition-colors"><Copy size={16} /></button>
                      </div>
                   </div>
                   
                   <textarea 
-                    className="w-full h-[280px] bg-zinc-900 border border-zinc-700 rounded-xl p-5 text-zinc-300 text-sm leading-relaxed focus:outline-none focus:border-emerald-500 custom-scrollbar resize-none"
+                    className="w-full h-[320px] bg-zinc-900 border border-zinc-700 rounded-xl p-5 text-zinc-300 text-sm leading-relaxed focus:outline-none focus:border-emerald-500 custom-scrollbar resize-none"
                     value={generatedCopy}
                     onChange={(e) => setGeneratedCopy(e.target.value)}
                   />
                   
-                  <button className="mt-6 flex items-center justify-center gap-2 w-full bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-                    <ImageIcon size={18} /> Proceed to Visuals (Gemini / Canva)
+                  <button className="mt-6 flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+                    <ImageIcon size={18} /> Proceed to Visuals
                   </button>
                 </div>
               </div>
