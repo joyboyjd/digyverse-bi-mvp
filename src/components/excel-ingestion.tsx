@@ -17,6 +17,7 @@ import {
 import { useIndustryContext } from "@/context/IndustryContext";
 import { useData } from "@/context/DataContext";
 import * as XLSX from 'xlsx';
+import { normalizeSheetData, type SheetRow } from "@/lib/data-utils";
 
 interface UploadedFile {
   id: string;
@@ -127,7 +128,7 @@ export default function ExcelIngestion({ onSyncComplete }: ExcelIngestionProps) 
     try {
       let totalRows = 0;
       let primaryFileName = "";
-      let parsedData: any[] = [];
+      let parsedData: SheetRow[] = [];
 
       // We will process the first ready file in the queue
       const fileToProcess = readyFiles[0];
@@ -145,8 +146,17 @@ export default function ExcelIngestion({ onSyncComplete }: ExcelIngestionProps) 
         const firstSheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[firstSheetName];
         
-        // 4. Convert the Excel sheet to raw JSON data!
-        parsedData = XLSX.utils.sheet_to_json(worksheet);
+        // 4. Convert the Excel sheet to raw JSON data.
+        //    `defval: null` keeps blank cells as null instead of dropping the
+        //    key, so downstream code never sees `undefined` for empty cells.
+        const rawData = XLSX.utils.sheet_to_json<SheetRow>(worksheet, {
+          defval: null,
+        });
+
+        // 5. Mapping phase: strictly coerce numeric columns to Number | null
+        //    (Revenue, TAT, Stay Days, Wait Times) so charts receive clean
+        //    numbers and blanks stay null rather than "nan".
+        parsedData = normalizeSheetData(rawData);
         totalRows = parsedData.length;
       }
 

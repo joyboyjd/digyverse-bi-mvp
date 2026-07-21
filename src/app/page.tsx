@@ -6,6 +6,7 @@ import Sidebar from "@/components/sidebar";
 import DashboardHeader from "@/components/dashboard-header";
 import MetricCard from "@/components/metric-card";
 import { useData } from "../context/DataContext";
+import { toNumber, type SheetRow } from "@/lib/data-utils";
 
 // Lucide Icons
 import {
@@ -54,21 +55,25 @@ export default function Home() {
     totalRevenue = 0;
     pendingTpaCount = 0;
     
-    const uniqueChannels = new Set();
+    const uniqueChannels = new Set<string>();
     const channelRevMap: Record<string, number> = {};
 
-    data.forEach((row: any) => {
-      // Safely parse the 4 new revenue columns
-      const pRev = Number(row.Pharmacy_Revenue) || 0;
-      const lRev = Number(row.Lab_Revenue) || 0;
-      const procRev = Number(row.Procedure_Revenue) || 0;
-      const consultRev = Number(row.Revenue_Consultation) || 0;
-      const rowTotal = pRev + lRev + procRev + consultRev;
+    data.forEach((row: SheetRow) => {
+      // Helper inside the loop to safely get numbers ignoring spaces/casing
+      const getNum = (keyMatch: string) => {
+        const match = Object.keys(row).find(k => k.trim().toLowerCase() === keyMatch.toLowerCase());
+        if (!match) return 0;
+        const cleaned = String(row[match]).replace(/[^0-9.-]+/g, "");
+        return isNaN(parseFloat(cleaned)) ? 0 : parseFloat(cleaned);
+      };
 
+      const rowTotal = getNum("Pharmacy_Revenue") + getNum("Lab_Revenue") + getNum("Procedure_Revenue") + getNum("Revenue_Consultation");
       totalRevenue += rowTotal;
 
-      // Track IPD vs OPD using the new Visit_Type column
-      const isIPD = row.Visit_Type?.toString().toUpperCase() === "IPD";
+      // Track IPD vs OPD
+      const visitKey = Object.keys(row).find(k => k.trim().toLowerCase() === "visit_type");
+      const isIPD = visitKey && String(row[visitKey]).toUpperCase().trim() === "IPD";
+      
       if (isIPD) {
         ipdCount++;
         ipdRevenue += rowTotal;
@@ -77,13 +82,16 @@ export default function Home() {
         opdRevenue += rowTotal;
       }
 
-      // Track TPA / Insurance Pending
-      if (row.Payment_Type === "TPA_Insurance") {
+      // Track TPA
+      const payKey = Object.keys(row).find(k => k.trim().toLowerCase() === "payment_type");
+      if (payKey && String(row[payKey]).trim() === "TPA_Insurance") {
         pendingTpaCount++;
       }
 
       // Track Channels
-      const channel = row.Acquisition_Channel || "Unknown";
+      const channelKey = Object.keys(row).find(k => k.trim().toLowerCase().includes("channel"));
+      const channel = channelKey ? String(row[channelKey]).trim() : "Unknown";
+      
       if (channel !== "Unknown" && channel !== "") {
         uniqueChannels.add(channel);
         channelRevMap[channel] = (channelRevMap[channel] || 0) + rowTotal;

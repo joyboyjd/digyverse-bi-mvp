@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar";
 import DashboardHeader from "@/components/dashboard-header";
 import MetricCard from "@/components/metric-card";
 import { useData } from "@/context/DataContext";
+import { toNumber, type SheetRow, type CustomKpiDatum, type RechartsFormatterValue } from "@/lib/data-utils";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import {
   Users, Bed, IndianRupee, Trophy, Settings, Activity, Building, Stethoscope, 
@@ -20,11 +21,11 @@ export default function KPIDashboard() {
   const [queryMetric, setQueryMetric] = useState("Sum");
   const [queryTarget, setQueryTarget] = useState("Billing_Amount_INR");
   const [queryGroup, setQueryGroup] = useState("Acquisition_Channel");
-  const [customChartData, setCustomChartData] = useState<any[] | null>(null);
+  const [customChartData, setCustomChartData] = useState<CustomKpiDatum[] | null>(null);
 
   const handleRefresh = () => alert("Reloading KPI Data...");
 
-  const data = parsedMetrics?.sheetData || [];
+  const data: SheetRow[] = parsedMetrics?.sheetData || [];
 
   // --- DYNAMIC DATA AGGREGATION ENGINE ---
   const stats = useMemo(() => {
@@ -53,17 +54,17 @@ export default function KPIDashboard() {
     const channelCount: Record<string, number> = {};
     const uniquePROs = new Set();
 
-    data.forEach((row: any) => {
+    data.forEach((row: SheetRow) => {
       const isIPD = row.Visit_Type === "IPD";
-      const dept = row.Department || "Unknown";
-      const doc = row.Doctor_ID || "Unknown";
-      const channel = row.Acquisition_Channel || "Unknown";
+      const dept = (row.Department as string) || "Unknown";
+      const doc = (row.Doctor_ID as string) || "Unknown";
+      const channel = (row.Acquisition_Channel as string) || "Unknown";
       const pro = row.PRO_ID;
-      
-      const pRev = Number(row.Pharmacy_Revenue) || 0;
-      const lRev = Number(row.Lab_Revenue) || 0;
-      const procRev = Number(row.Procedure_Revenue) || 0;
-      const consultRev = Number(row.Revenue_Consultation) || 0;
+
+      const pRev = toNumber(row.Pharmacy_Revenue);
+      const lRev = toNumber(row.Lab_Revenue);
+      const procRev = toNumber(row.Procedure_Revenue);
+      const consultRev = toNumber(row.Revenue_Consultation);
       const rowTotal = pRev + lRev + procRev + consultRev;
 
       // Classify Revenue
@@ -87,13 +88,13 @@ export default function KPIDashboard() {
 
       if (isIPD) {
         ipdCount++;
-        totalLos += Number(row.Length_Of_Stay_Days) || 0;
-        totalDischargeTat += Number(row.Discharge_TAT_Mins) || 0;
+        totalLos += toNumber(row.Length_Of_Stay_Days);
+        totalDischargeTat += toNumber(row.Discharge_TAT_Mins);
         procedureCount++;
-        if (row.Surgery_Success !== "No") surgerySuccessCount++; 
+        if (row.Surgery_Success !== "No") surgerySuccessCount++;
       } else {
         opdCount++;
-        totalWaitTime += Number(row.OPD_Wait_Time_Mins) || 0;
+        totalWaitTime += toNumber(row.OPD_Wait_Time_Mins);
         if (row.Converted_To_IPD === "Yes") opdConvertedToIpd++;
       }
     });
@@ -133,19 +134,19 @@ export default function KPIDashboard() {
       return;
     }
     const groupMap: Record<string, { total: number, count: number, max: number }> = {};
-    data.forEach((row: any) => {
-      const groupVal = row[queryGroup] || "Unknown";
-      let targetVal = (queryMetric === "Count" || queryTarget === "Patient_ID") ? 1 : (Number(row[queryTarget]) || 0);
+    data.forEach((row: SheetRow) => {
+      const groupVal = (row[queryGroup] as string) || "Unknown";
+      const targetVal = (queryMetric === "Count" || queryTarget === "Patient_ID") ? 1 : toNumber(row[queryTarget]);
       if (!groupMap[groupVal]) groupMap[groupVal] = { total: 0, count: 0, max: -Infinity };
       groupMap[groupVal].total += targetVal;
       groupMap[groupVal].count += 1;
       if (targetVal > groupMap[groupVal].max) groupMap[groupVal].max = targetVal;
     });
 
-    const formattedData = Object.keys(groupMap).map(key => {
-      let finalValue = queryMetric === "Count" ? groupMap[key].count 
-                     : queryMetric === "Sum" ? groupMap[key].total 
-                     : queryMetric === "Average" ? groupMap[key].total / groupMap[key].count 
+    const formattedData: CustomKpiDatum[] = Object.keys(groupMap).map(key => {
+      const finalValue = queryMetric === "Count" ? groupMap[key].count
+                     : queryMetric === "Sum" ? groupMap[key].total
+                     : queryMetric === "Average" ? groupMap[key].total / groupMap[key].count
                      : groupMap[key].max === -Infinity ? 0 : groupMap[key].max;
       return { name: key, value: Number(finalValue.toFixed(2)) };
     }).sort((a, b) => b.value - a.value);
@@ -405,8 +406,8 @@ export default function KPIDashboard() {
                         <BarChart data={customChartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                           <CartesianGrid strokeDasharray="3 3" stroke="rgba(63, 63, 70, 0.15)" vertical={false} />
                           <XAxis dataKey="name" stroke="#71717a" fontSize={11} tickLine={false} axisLine={false} />
-                          <YAxis stroke="#71717a" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => queryMetric !== "Count" ? `₹${(val/1000).toFixed(0)}k` : val} />
-                          <Tooltip cursor={{ fill: "rgba(16, 185, 129, 0.05)" }} contentStyle={{ backgroundColor: "#09090b", border: "1px solid rgba(63, 63, 70, 0.5)", borderRadius: "12px", fontSize: "12px", fontFamily: "var(--font-inter)" }} formatter={(value: any) => { if (queryMetric !== "Count") { return [`₹${Number(value).toLocaleString("en-IN")}`, queryMetric]; } return [value, queryMetric]; }} />
+                          <YAxis stroke="#71717a" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val: number | string) => queryMetric !== "Count" ? `₹${(Number(val)/1000).toFixed(0)}k` : String(val)} />
+                          <Tooltip cursor={{ fill: "rgba(16, 185, 129, 0.05)" }} contentStyle={{ backgroundColor: "#09090b", border: "1px solid rgba(63, 63, 70, 0.5)", borderRadius: "12px", fontSize: "12px", fontFamily: "var(--font-inter)" }} formatter={(value: RechartsFormatterValue) => { if (queryMetric !== "Count") { return [`₹${Number(value).toLocaleString("en-IN")}`, queryMetric]; } return [value, queryMetric]; }} />
                           <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={60}>
                             {customChartData.map((entry, index) => (
                               <Cell key={`cell-${index}`} fill={index === 0 ? "#10b981" : index === 1 ? "#3b82f6" : "#a855f7"} />

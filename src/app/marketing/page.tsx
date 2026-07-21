@@ -284,8 +284,20 @@ export default function AIMarketingEngine() {
                     ))}
                   </div>
                   {step === 2 && (
-                    <button onClick={handleGenerateCopy} disabled={selectedStrategy === null} className="mt-4 flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all disabled:opacity-50">Write Campaign Copy <ArrowRight size={18} /></button>
-                  )}
+  <div className="mt-5 space-y-3">
+    <div className="grid grid-cols-2 gap-3">
+      <button onClick={() => handleGenerateStrategy("new")} disabled={isGenerating} className="flex items-center justify-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white py-2.5 rounded-xl text-sm font-medium transition-all">
+        <RefreshCcw size={16} /> Regenerate All
+      </button>
+      <button onClick={() => handleGenerateStrategy("append")} disabled={isGenerating} className="flex items-center justify-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white py-2.5 rounded-xl text-sm font-medium transition-all">
+        <Plus size={16} /> Add More Options
+      </button>
+    </div>
+    <button onClick={handleGenerateCopy} disabled={selectedStrategy === null} className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl transition-all disabled:opacity-50">
+      Write Campaign Copy <ArrowRight size={18} />
+    </button>
+  </div>
+)}
                 </div>
               )}
             </div>
