@@ -5,6 +5,8 @@ import Sidebar from "@/components/sidebar";
 import DashboardHeader from "@/components/dashboard-header";
 import { useData } from "../../context/DataContext"; 
 import { Sparkles, ArrowRight, CheckCircle2, Image as ImageIcon, RefreshCcw, Plus, Wand2, Lightbulb, Edit2, Save, LayoutGrid, Check, Download, Rocket } from "lucide-react";
+import Step5FinalPost from "./step-5-final-post";
+import Step6Distribution from "./step-6-distribution";
 
 interface AssetGroup {
   id: string;
@@ -423,7 +425,7 @@ export default function AIMarketingEngine() {
                           <Download size={14} /> Download All Assets
                         </button>
                         <button 
-                          onClick={() => alert("Handoff to Step 5: Injecting context payload into ChatGPT assembly matrix...")}
+                          onClick={() => setStep(5)}
                           className="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 text-xs font-bold py-3 rounded-xl transition-all shadow-[0_0_15px_rgba(16,185,129,0.2)]"
                         >
                           <Rocket size={14} /> Assemble Final Post (Step 5)
@@ -441,6 +443,12 @@ export default function AIMarketingEngine() {
             </div>
           </div>
         </div>
+        {step === 5 && (
+  <div className="space-y-8">
+    <Step5FinalPost />
+    <Step6Distribution />
+  </div>
+)}
       </main>
     </div>
   );
